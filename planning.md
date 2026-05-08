@@ -2,27 +2,36 @@ file dove scriviamo il planing del progetto (do's, do not's and tech stack/ apis
 
 Denise:
 Cosa fa la web app
+parte da una pagina randomica e ha come obbiettivo finale una pagina wiki compresa in un grupo legato da un senso logico. ci si muove usando gli hyperlink di wikipedia
 
-Partenza da una pagina web casuale, arrivo a una pagina web casuale muovendosi solo tramite link wikipedia. 
 Calcola tempo totale da partenza ad arrivo e numero di pagine visitate
+suono finale vittoria happy wheels
 
-Cosa non fa la web app 
+could
+possibilità di fare un a sfida "locale" condividendo il punto di partenza per vedere chi arriva prima (comunque i due giocatori sono in due sessioni locali diverse)
+checkpoint che se sono raggiunti ti fanno guadagnare tempo/score
+rate us page
+light/dark mode
 
-Non sfide tra più persone ma solo single game
+Cosa non fa la web app
 
-Come farla 
+Non sfide tra più persone online ma solo partite locali con uno score
+non ha un punto di fine randomico
+non esce da wikipedia/pagine diverse da articoli
+
+Come farla
 
 3 pagine HTML:
-pagina iniziale con navbar, titolo, bottone per avvio gioco, footer
-pagina 2 con navbar con pagine visitate e tempo e div vuoto che viene riempito con JSON della pagina wikipedia corrente 
-pagina finale con risultato finale e complimenti 
+pagina iniziale con navbar, titolo, bottone per avvio gioco, (forse impostazioni) footer
+pagina 2 con navbar con pagine visitate e tempo e div vuoto che viene riempito con JSON della pagina wikipedia corrente
+pagina finale con risultato finale e complimenti
 
-CSS → decidere design: colori, font 
+CSS → decidere design: colori, font, mobile first, font montserrat per <p> e testi vari, font secondario da capire per il nome della webapp, partiamo da una light mode
 
-Javascript → 
+Javascript → localStorage, filtrare (rimuovere infobox, note, immagini, template, e lasciare solo il testo + i link [[interni]] (quelli verso altri articoli, non sezioni o file))
 
-Presentazione finale → 
+Presentazione finale → presentazione di google
 
 Piattaforme di lavoro → Github, trello
 
-Hosting – GitHub Web 
+Hosting – GitHub Web
