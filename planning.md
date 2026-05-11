@@ -38,7 +38,7 @@ pagina finale con risultato finale e complimenti
 
 CSS → decidere design: colori, font, mobile first, font montserrat per <p> e testi vari, font secondario da capire per il nome della webapp, partiamo da una light mode
 
-Javascript → localStorage, filtrare (rimuovere infobox, note, immagini, template, e lasciare solo il testo + i link [[interni]] (quelli verso altri articoli, non sezioni o file))
+Javascript → localStorage, https://en.wikipedia.org/w/api.php, filtrare (rimuovere infobox, note, immagini, template, e lasciare solo il testo + i link [[interni]] (quelli verso altri articoli, non sezioni o file))
 
 Presentazione finale → presentazione di google
 
