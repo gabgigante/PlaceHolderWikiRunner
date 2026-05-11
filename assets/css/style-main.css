@@ -1,0 +1,38 @@
+body {
+  background-color: #0f0b01;
+  color: #00f3ff;
+  border: 3.5px solid #333333;
+  padding: 5px;
+}
+
+.border {
+  border: 2px solid #ff00ff;
+}
+
+.container {
+  min-height: 100vh;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+h1 {
+  font-size: 26px;
+}
+
+.title div > h2 {
+  font-size: 15px;
+}
+
+hr {
+  border-color: #ff00ff;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px;
+}
