@@ -1,38 +1,37 @@
 const button = document.getElementById('open');
-const URL =
-  'https://en.wikipedia.org/w/api.php?action=parse&format=json&origin=*&page=Special:Random&redirects=true&prop=text|images|displaytitle';
+const result = document.getElementById('display-result');
 
 async function getWikiAPI() {
-  const h1 = document.getElementById('title');
-  const content = document.getElementById('content');
   try {
-    const res = await fetch(URL);
+    // PAGINA RANDOM
+    const randomResponse = await fetch(
+      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0',
+    );
 
-    if (!res.ok) {
-      throw new Error('Errore nella chiamata API', res.status);
-    }
+    const randomData = await randomResponse.json();
 
-    const data = await res.json();
+    const page = Object.values(randomData.query.pages)[0];
 
-    console.log(data);
+    const title = page.title;
 
-    const info = data.parse;
+    // HTML COMPLETO PAGINA
+    const pageResponse = await fetch(
+      `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(title)}&prop=text&format=json&origin=*`,
+    );
 
-    h1.textContent = info.title;
-    content.innerHTML = info.text['*'];
+    const pageData = await pageResponse.json();
 
-    // if (data.parse) {
-    //   const info = data.parse;
-    //   title.textContent = info.title;
-    //   content.innerHTML = info.text['*'];
-    // }
-  } catch (err) {
-    console.error('Dettaglio Errore:', err.message);
-    h1.textContent = 'Ops! Qualcosa è andato storto.';
-    content.innerHTML = err.message;
+    const html = pageData.parse.text['*'];
+
+    result.innerHTML = `
+      <h1>${title}</h1>
+      ${html}
+    `;
+  } catch (error) {
+    console.error(error);
+
+    result.innerHTML = 'Errore caricamento Wikipedia';
   }
 }
 
-button.addEventListener('click', (e) => {
-  getWikiAPI();
-});
+button.addEventListener('click', getWikiAPI);
