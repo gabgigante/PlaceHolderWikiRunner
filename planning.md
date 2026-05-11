@@ -12,12 +12,22 @@ possibilità di fare un a sfida "locale" condividendo il punto di partenza per v
 checkpoint che se sono raggiunti ti fanno guadagnare tempo/score
 rate us page
 light/dark mode
+possibilità di livelli
+
+possibili idee
+hitler very easy
+la madonna easy
+kevin spazioso
+michele figlio giacomo slightly less easy (i'm kinda stupid - Gabriele)
+waldo extreme
 
 Cosa non fa la web app
 
 Non sfide tra più persone online ma solo partite locali con uno score
 non ha un punto di fine randomico
 non esce da wikipedia/pagine diverse da articoli
+
+identità
 
 Come farla
 
