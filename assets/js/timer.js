@@ -3,7 +3,7 @@ const minutes = document.getElementById('minutes');
 let countSec = 0;
 let countMins = 0;
 
-const timer = setInterval(() => {
+setInterval(() => {
   countSec++;
   if (countSec > 59) {
     countSec = 0;

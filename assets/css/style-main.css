@@ -97,7 +97,7 @@ footer {
 }
 
 #pulsing-text {
-  animation: text-pulse 1.3s infinite ease-in-out;
+  animation: text-pulse 1.5s infinite ease-in-out;
 }
 
 @keyframes text-pulse {
