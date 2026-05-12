@@ -1,7 +1,13 @@
 const button = document.getElementById("open");
 const result = document.getElementById("display-result");
+const counterDisplay = document.getElementById("click-counter"); // aggiungi questo elemento nel tuo HTML
 
 let currentTitle = "";
+let clickCount = 0;
+
+function updateCounter() {
+  if (counterDisplay) counterDisplay.textContent = clickCount;
+}
 
 async function isRedirectPage(title) {
   try {
@@ -20,9 +26,15 @@ async function isRedirectPage(title) {
   }
 }
 
-async function loadWikipediaPage(title) {
+async function loadWikipediaPage(title, fromLink = false) {
   try {
+    if (fromLink && title.toLowerCase() !== currentTitle.toLowerCase()) {
+      clickCount++;
+      updateCounter();
+    }
+
     currentTitle = title;
+
     //controlla se si ha vinto
     if (title.toLowerCase() === "michael jackson")
       window.location.href = "https://google.com";
@@ -75,7 +87,7 @@ async function loadWikipediaPage(title) {
 
         console.log("Click su:", finalTitle);
 
-        loadWikipediaPage(finalTitle);
+        loadWikipediaPage(finalTitle, true);
       });
     });
   } catch (error) {
@@ -93,6 +105,9 @@ function disableLink(link) {
 
 async function getWikiAPI() {
   try {
+    clickCount = 0;
+    updateCounter();
+
     const randomResponse = await fetch(
       "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
     );
@@ -112,7 +127,7 @@ async function getWikiAPI() {
     }
 
     if (page.title.toLowerCase() === "michael jackson") {
-      console.log("Trovato MJ all’inizio, riprovo...");
+      console.log("Trovato MJ all'inizio, riprovo...");
       getWikiAPI();
       return;
     }
@@ -126,8 +141,6 @@ async function getWikiAPI() {
 }
 
 if (button && result) {
-  getWikiAPI();
-
   button.addEventListener("click", () => {
     console.log("Nuovo articolo casuale...");
     getWikiAPI();
@@ -135,3 +148,7 @@ if (button && result) {
 } else {
   console.error("Elementi HTML non trovati!");
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  getWikiAPI();
+});
