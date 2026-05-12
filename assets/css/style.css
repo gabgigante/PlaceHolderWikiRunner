@@ -16,9 +16,6 @@ html{
     font-size:10px;
 }
 
-body{
-    position:relative;
-}
 
 .overlay{
     pointer-events: none;
@@ -46,6 +43,7 @@ body{
 } */
 
 body{
+    position:relative;
     /* max-width: 789px; */
     min-width:375px;
     /* font-family: "Montserrat", sans-serif; */
@@ -65,7 +63,7 @@ body{
 .border{
     border: #ff00ff, solid, 5px;
     margin: 0.5rem;
-    padding: 2rem;
+    padding:2rem;
 }
 
 .blue-words{
@@ -190,30 +188,14 @@ button{
     font-weight: bolder;
     font-size: 2rem;
     border: var(--fuxia), solid, 3px;
-    height: 7rem;
     align-self: center;
-    padding: 1.5rem;
+    padding: 2rem;
 
     text-shadow:
     0 0 5px var(--fuxia),
     0 0 10px var(--fuxia),
     0 0 20px var(--fuxia);
 }
-/* 
-.traslate{
-    display: flex;
-    align-items: center;
-    animation: marquee 5s linear infinite;
-}
-
-@keyframes marquee{
-    0%{
-        transform: translateX(10);
-    }
-    100%{
-        transform: translateX(40%);
-    }
-} */
 
 .crew-ranking{
         margin-bottom: 3.5rem;
@@ -235,4 +217,71 @@ button{
 a{
     text-decoration: none;
     color: var(--fuxia);
+}
+
+@media(min-width:789px){
+    .target-node{
+        display: flex;
+        flex-direction: row;
+    }
+}
+@media (min-width: 1024px){
+    .border{
+        padding:5rem;
+        overflow: hidden;
+    }
+    .hidden{
+        display:block;
+
+    }
+
+    ul{
+        display: flex;
+        flex-direction: row;
+        gap:3rem;
+        justify-content: space-between;
+        margin-bottom:4rem;
+        color: var(--fuxia);
+    }
+    li{
+        list-style: none;
+    }
+
+        
+    .traslate{
+        display: flex;
+        /* align-items: center; */
+        overflow: hidden;
+        width: max-content;
+        flex-shrink: 0;
+        /* width: 100%; */
+        animation: marquee 15s linear infinite;
+    }
+
+    @keyframes marquee{
+        0%{
+            transform: translateX(0);
+        }
+        100%{
+            transform: translateX(-50%);
+        }
+    }
+
+    .hero-container{
+        flex-direction: row;
+        gap:6rem;
+    }
+
+    .crew-ranking{
+        margin-top:7rem;
+    }
+
+    .system-diagnostics{
+        margin-top:7rem;
+    }
+
+    button{
+        width: 45rem;
+        padding:4rem;
+    }
 }
