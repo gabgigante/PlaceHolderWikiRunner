@@ -1,6 +1,6 @@
 body {
   background-color: var(--black);
-  border: 3.5px solid #333333;
+  border: 3.5px solid grey;
   margin: 1rem;
   color: var(--neon-blue);
 }
