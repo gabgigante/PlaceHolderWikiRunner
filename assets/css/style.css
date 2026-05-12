@@ -232,3 +232,7 @@ button{
     0 0 20px var(--neon-blue); */
 }
 
+a{
+    text-decoration: none;
+    color: var(--fuxia);
+}
