@@ -1,7 +1,7 @@
-const button = document.getElementById('open');
-const result = document.getElementById('display-result');
+const button = document.getElementById("open");
+const result = document.getElementById("display-result");
 
-let currentTitle = '';
+let currentTitle = "";
 
 async function isRedirectPage(title) {
   try {
@@ -23,14 +23,14 @@ async function isRedirectPage(title) {
 async function loadWikipediaPage(title) {
   try {
     currentTitle = title;
-    //controlla se si è vinto
-    if (title.toLowerCase() === 'michael jackson')
-      window.location.href = 'https://google.com';
+    //controlla se si ha vinto
+    if (title.toLowerCase() === "michael jackson")
+      window.location.href = "https://google.com";
 
     const redirectTrap = await isRedirectPage(title);
 
     if (redirectTrap) {
-      console.log('Skipping redirect:', title);
+      console.log("Skipping redirect:", title);
       return;
     }
 
@@ -41,18 +41,18 @@ async function loadWikipediaPage(title) {
     const data = await response.json();
 
     if (!data.parse || !data.parse.text) {
-      throw new Error('Pagina non trovata');
+      throw new Error("Pagina non trovata");
     }
 
-    const html = data.parse.text['*'];
+    const html = data.parse.text["*"];
 
     result.innerHTML = `
       <h1>${title}</h1>
       ${html}
     `;
 
-    result.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
+    result.querySelectorAll("a").forEach((link) => {
+      const href = link.getAttribute("href");
 
       if (!href) {
         disableLink(link);
@@ -68,12 +68,12 @@ async function loadWikipediaPage(title) {
 
       const articleName = decodeURIComponent(wikiMatch[1]);
 
-      const finalTitle = articleName.replace(/_/g, ' ');
+      const finalTitle = articleName.replace(/_/g, " ");
 
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
 
-        console.log('Click su:', finalTitle);
+        console.log("Click su:", finalTitle);
 
         loadWikipediaPage(finalTitle);
       });
@@ -81,26 +81,26 @@ async function loadWikipediaPage(title) {
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = 'Error loading Wikipedia article: ' + title;
+    result.innerHTML = "Error loading Wikipedia article: " + title;
   }
 }
 
 function disableLink(link) {
-  link.removeAttribute('href');
-  link.style.cursor = 'default';
-  link.style.pointerEvents = 'none';
+  link.removeAttribute("href");
+  link.style.cursor = "default";
+  link.style.pointerEvents = "none";
 }
 
 async function getWikiAPI() {
   try {
     const randomResponse = await fetch(
-      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
+      "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
     );
 
     const randomData = await randomResponse.json();
 
     if (!randomData.query || !randomData.query.pages) {
-      throw new Error('Nessuna pagina casuale trovata');
+      throw new Error("Nessuna pagina casuale trovata");
     }
 
     const pages = Object.values(randomData.query.pages);
@@ -108,11 +108,11 @@ async function getWikiAPI() {
     const page = pages[0];
 
     if (!page || !page.title) {
-      throw new Error('Titolo non valido');
+      throw new Error("Titolo non valido");
     }
 
-    if (page.title.toLowerCase() === 'michael jackson') {
-      console.log('Trovato MJ all’inizio, riprovo...');
+    if (page.title.toLowerCase() === "michael jackson") {
+      console.log("Trovato MJ all’inizio, riprovo...");
       getWikiAPI();
       return;
     }
@@ -121,21 +121,17 @@ async function getWikiAPI() {
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = 'Error fetching random article';
+    result.innerHTML = "Error fetching random article";
   }
 }
 
 if (button && result) {
   getWikiAPI();
 
-  button.addEventListener('click', () => {
-    console.log('Nuovo articolo casuale...');
+  button.addEventListener("click", () => {
+    console.log("Nuovo articolo casuale...");
     getWikiAPI();
   });
 } else {
-  console.error('Elementi HTML non trovati!');
-}
-const mj = 'Michael Jackson';
-if (currentTitle === mj) {
-  console.log('hai vinto');
+  console.error("Elementi HTML non trovati!");
 }
