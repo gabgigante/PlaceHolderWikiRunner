@@ -16,11 +16,17 @@ html{
     font-size:10px;
 }
 
+body{
+    position:relative;
+}
+
 .overlay{
     pointer-events: none;
     position: absolute;
     width: 100%;
-    height: 100%;
+    /* height: 100%; */
+    inset: 0;
+    min-height: 100%;
     background: repeating-linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0) 100%);
     background-size: auto 4px;
     z-index: 1;
@@ -40,14 +46,16 @@ html{
 } */
 
 body{
-    max-width: 789px;
+    /* max-width: 789px; */
     min-width:375px;
-    font-family: "Montserrat", sans-serif;
+    /* font-family: "Montserrat", sans-serif; */
     background-color: var(--black);
     color: var(--neon-blue);
     border: grey, solid, 3px;
     margin: 1rem;
-    font-size:1.6rem
+    font-size:2.5rem;
+    letter-spacing: 3px;
+    font-family: "VT323", monospace;
 }
 
 .hidden{
@@ -76,18 +84,20 @@ h1{
     font-size: 8rem;
 }
 
-h1:hover{
-    color: var(--neon-blue-soft);
+.glow{
+    text-shadow:
+        0 0 5px var(--neon-blue),
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue);
 }
 
 h2{
     font-family: "VT323", monospace;
     font-style: normal;
     font-weight: 400;
-}
-
-.wikirun-protocol{
     color: var(--fuxia);
+    font-size: 2.7rem;
+    /* font-size: 2.2rem; */
 }
 
 .hero-container{
@@ -99,7 +109,7 @@ h2{
 .hero-main{
     display: flex;
     flex-direction: column;
-    align-items: center;
+    /* align-items: center; */
     gap: 3rem;
 }
 
@@ -112,6 +122,7 @@ h3{
 
 .briefing p {
     color: var(--neon-blue-soft);
+    margin-bottom: 2rem;
 }
 
 .pink-words{
@@ -127,8 +138,14 @@ h3{
     font-style: normal;
     font-weight: 500;
     font-size: 3rem;
+    align-self: center;
     text-align: center;
-    z-index: 100;
+
+    text-shadow:
+    0 0 5px var(--fuxia),
+    0 0 10px var(--fuxia),
+    0 0 20px var(--fuxia);
+    /* z-index: 100; */
 }
 
 svg{
@@ -145,6 +162,10 @@ svg{
     margin-bottom: 1rem;
 }
 
+.rules{
+    text-align: start;
+}
+
 .rules p{
     color: var(--neon-blue-soft);
     margin-bottom: 0.5rem;
@@ -153,6 +174,13 @@ svg{
 span{
     color:var(--neon-blue);
     font-weight: bold;
+
+    /* text-shadow:
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue); */
+
+
 }
 
 button{
@@ -165,6 +193,11 @@ button{
     height: 7rem;
     align-self: center;
     padding: 1.5rem;
+
+    text-shadow:
+    0 0 5px var(--fuxia),
+    0 0 10px var(--fuxia),
+    0 0 20px var(--fuxia);
 }
 /* 
 .traslate{
@@ -181,14 +214,21 @@ button{
         transform: translateX(40%);
     }
 } */
-.crew-ranking p{
+
+.crew-ranking{
+        margin-bottom: 3.5rem;
+
+}
+.ranking-and-diagnostics article p{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    font-weight: bold;
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    /* text-shadow:
+    0 0 5px var(--neon-blue),
+    0 0 10px var(--neon-blue),
+    0 0 20px var(--neon-blue); */
 }
 
-.system-diagnostics p{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;    
-}
