@@ -13,13 +13,14 @@
     <title>Wiki Run</title>
   </head>
   <body>
+    <div class="overlay noise"></div>
     <div class="border">
       <header>
         <section class="title">
-          <h1>WIKI RUN</h1>
-          <h2 class="wikirun-protocol">
+          <h2>WIKI RUN</h2>
+          <h3 class="wikirun-protocol">
             WIKI RUN PROTOCOL ACTIVE - <span class="blue-words">Beat it</span>
-          </h2>
+          </h3>
         </section>
       </header>
       <main>
@@ -27,13 +28,16 @@
       </main>
       <footer>
         <div>
-          <p>COUNTER</p>
+          <p><span id="jumps"></span>JUMPS</p>
         </div>
         <div>
-          <p>TIMER</p>
+          <p id="pulsing-text">
+            <span id="minutes">00</span>:<span id="seconds">00</span>
+          </p>
         </div>
       </footer>
     </div>
     <script src="./assets/js/script.js"></script>
+    <script src="./assets/js/timer.js"></script>
   </body>
 </html>
