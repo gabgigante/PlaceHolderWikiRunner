@@ -1,10 +1,10 @@
 body {
-  font-family: 'Montserrat', sans-serif;
   background-color: var(--black);
   border: 3.5px solid grey;
   margin: 1rem;
   color: var(--neon-blue);
   position: relative;
+  font-family: 'VT323', monospace;
 }
 
 :root {
@@ -70,9 +70,13 @@ header {
   min-height: 100vh;
 }
 
+span img {
+  width: 100%;
+  height: 100%;
+}
+
 h2 {
   font-size: 26px;
-  font-family: 'VT323', monospace;
   margin: 0;
   display: inline-block;
 }
@@ -94,6 +98,8 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
+  background-color: var(--black);
 }
 
 #pulsing-text {
@@ -121,4 +127,13 @@ footer {
       0 0 4px var(--neon-blue),
       0 0 10px var(--neon-blue);
   }
+}
+
+#display-result {
+  padding: 2em;
+  font-size: medium;
+}
+
+a {
+  color: var(--fucsia);
 }
