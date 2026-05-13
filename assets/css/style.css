@@ -188,7 +188,7 @@ button{
     background-color: rgba(255, 0, 255, 0.1);
     color: var(--fuxia);
     font-weight: bolder;
-    font-size: 2rem;
+    font-size: 2.5rem;
     border: var(--fuxia) solid 3px;
     align-self: center;
     padding: 2rem;
@@ -197,6 +197,13 @@ button{
     0 0 5px var(--fuxia),
     0 0 10px var(--fuxia),
     0 0 20px var(--fuxia);
+}
+
+a{
+    text-decoration: none;
+    color: var(--fuxia);
+    /* padding: 2rem;
+    max-width: 35rem; */
 }
 
 .crew-ranking{
@@ -223,10 +230,7 @@ button{
     0 0 20px var(--neon-blue); */
 }
 
-a{
-    text-decoration: none;
-    color: var(--fuxia);
-}
+
 
 @media(min-width:789px){
     .target-node{
@@ -283,6 +287,7 @@ a{
 
     .hero-main{
         max-width: 75%;
+        border-right-style:groove;
     }
 
     .crew-ranking{
@@ -297,5 +302,15 @@ a{
         margin-top: 2rem;
         width: 45rem;
         padding:4rem;
+    }
+
+    button:hover{
+    background-color: var(--neon-blue);
+    color: var(--fuxia);
+    cursor: pointer;
+    }
+
+    a:hover{
+        color: var(--fuxia);
     }
 }
