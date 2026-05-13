@@ -1,16 +1,21 @@
 // const button = document.getElementById("open");
-const result = document.getElementById("display-result");
-const counterDisplay = document.getElementById("jumps");
-const seconds = document.getElementById("seconds");
-const minutes = document.getElementById("minutes");
+const result = document.getElementById('display-result');
+const counterDisplay = document.getElementById('jumps');
+const seconds = document.getElementById('seconds');
+const minutes = document.getElementById('minutes');
+const jumpText = document.getElementById('jump-text');
 
-let countSec = 0;
-let countMins = 0;
-let currentTitle = "";
+let count = 0;
+let currentTitle = '';
 let clickCount = 0;
 
 function updateCounter() {
   if (counterDisplay) counterDisplay.textContent = clickCount;
+
+  if (jumpText) {
+    jumpText.textContent =
+      clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
+  }
 }
 
 async function isRedirectPage(title) {
@@ -40,13 +45,13 @@ async function loadWikipediaPage(title, fromLink = false) {
     currentTitle = title;
 
     //controlla se si ha vinto
-    if (title.toLowerCase() === "michael jackson")
-      window.location.href = "https://google.com";
+    if (title.toLowerCase() === 'michael jackson')
+      window.location.href = 'https://google.com';
 
     const redirectTrap = await isRedirectPage(title);
 
     if (redirectTrap) {
-      console.log("Skipping redirect:", title);
+      console.log('Skipping redirect:', title);
       return;
     }
 
@@ -57,18 +62,18 @@ async function loadWikipediaPage(title, fromLink = false) {
     const data = await response.json();
 
     if (!data.parse || !data.parse.text) {
-      throw new Error("Pagina non trovata");
+      throw new Error('Pagina non trovata');
     }
 
-    const html = data.parse.text["*"];
+    const html = data.parse.text['*'];
 
     result.innerHTML = `
       <h1>${title}</h1>
       ${html}
     `;
 
-    result.querySelectorAll("a").forEach((link) => {
-      const href = link.getAttribute("href");
+    result.querySelectorAll('a').forEach((link) => {
+      const href = link.getAttribute('href');
 
       if (!href) {
         disableLink(link);
@@ -84,12 +89,12 @@ async function loadWikipediaPage(title, fromLink = false) {
 
       const articleName = decodeURIComponent(wikiMatch[1]);
 
-      const finalTitle = articleName.replace(/_/g, " ");
+      const finalTitle = articleName.replace(/_/g, ' ');
 
-      link.addEventListener("click", (e) => {
+      link.addEventListener('click', (e) => {
         e.preventDefault();
 
-        console.log("Click su:", finalTitle);
+        console.log('Click su:', finalTitle);
 
         loadWikipediaPage(finalTitle, true);
       });
@@ -97,14 +102,14 @@ async function loadWikipediaPage(title, fromLink = false) {
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = "Error loading Wikipedia article: " + title;
+    result.innerHTML = 'Error loading Wikipedia article: ' + title;
   }
 }
 
 function disableLink(link) {
-  link.removeAttribute("href");
-  link.style.cursor = "default";
-  link.style.pointerEvents = "none";
+  link.removeAttribute('href');
+  link.style.cursor = 'default';
+  link.style.pointerEvents = 'none';
 }
 
 async function getWikiAPI() {
@@ -113,13 +118,13 @@ async function getWikiAPI() {
     updateCounter();
 
     const randomResponse = await fetch(
-      "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
+      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
     );
 
     const randomData = await randomResponse.json();
 
     if (!randomData.query || !randomData.query.pages) {
-      throw new Error("Nessuna pagina casuale trovata");
+      throw new Error('Nessuna pagina casuale trovata');
     }
 
     const pages = Object.values(randomData.query.pages);
@@ -127,10 +132,10 @@ async function getWikiAPI() {
     const page = pages[0];
 
     if (!page || !page.title) {
-      throw new Error("Titolo non valido");
+      throw new Error('Titolo non valido');
     }
 
-    if (page.title.toLowerCase() === "michael jackson") {
+    if (page.title.toLowerCase() === 'michael jackson') {
       console.log("Trovato MJ all'inizio, riprovo...");
       getWikiAPI();
       return;
@@ -140,7 +145,7 @@ async function getWikiAPI() {
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = "Error fetching random article";
+    result.innerHTML = 'Error fetching random article';
   }
 }
 
@@ -153,16 +158,14 @@ async function getWikiAPI() {
   console.error("Elementi HTML non trovati!");
 }*/
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
   getWikiAPI();
 });
 
-setInterval(() => {
-  countSec++;
-  if (countSec > 59) {
-    countSec = 0;
-    countMins++;
-  }
-  seconds.textContent = countSec < 10 ? "0" + countSec : countSec;
-  minutes.textContent = countMins < 10 ? "0" + countMins : countMins;
-}, 1000);
+// setInterval(() => {
+//   count++;
+
+//   minutes.textContent = String(count / 60).padStart(2, '0');
+
+//   seconds.textContent = String(count).padStart(2, '0');
+// }, 1000);
