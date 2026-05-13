@@ -77,20 +77,10 @@ span img {
   height: 60%;
 }
 
-h1 {
-  color: var(--neon-blue);
-}
-
-h2 {
+.title h2 {
   font-size: 26px;
   margin: 0;
   display: inline-block;
-  color: var(--neon-blue);
-}
-
-h4,
-h5,
-h6 {
   color: var(--neon-blue);
 }
 
@@ -98,6 +88,14 @@ h6 {
   font-size: 15px;
   margin: 0;
   display: inline-block;
+}
+
+h1,
+h2,
+h4,
+h5,
+h6 {
+  color: var(--fucsia);
 }
 
 footer {
@@ -149,5 +147,5 @@ footer {
 }
 
 a {
-  color: var(--fucsia);
+  color: var(--neon-blue);
 }
