@@ -53,6 +53,7 @@ function startBootLines() {
   }, totalDelay + 500);
 }
 
+<<<<<<< HEAD
 // function startBootLines() {
 //     for (let i = 0; i < bootLines.length; i++) {
 //         (function(i) {
@@ -71,3 +72,6 @@ function startBootLines() {
 //devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
 
 //creo funzione che imposta un timer e
+=======
+ 
+>>>>>>> c40ced6836c0d8180c86d2b1e26593dd4bb55ced
