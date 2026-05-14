@@ -172,4 +172,4 @@ const intervalId = setInterval(() => {
   if (count >= 3600) {
     clearInterval(intervalId);
   }
-}, 10);
+}, 1000);
