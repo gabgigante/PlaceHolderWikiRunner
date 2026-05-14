@@ -163,10 +163,13 @@ document.addEventListener('DOMContentLoaded', () => {
   getWikiAPI();
 });
 
-// setInterval(() => {
-//   count++;
+const intervalId = setInterval(() => {
+  count++;
 
-//   minutes.textContent = String(count / 60).padStart(2, '0');
+  seconds.textContent = String(count % 60).padStart(2, '0');
+  minutes.textContent = String(Math.floor(count / 60) % 60).padStart(2, '0');
 
-//   seconds.textContent = String(count).padStart(2, '0');
-// }, 1000);
+  if (count >= 3600) {
+    clearInterval(intervalId);
+  }
+}, 10);
