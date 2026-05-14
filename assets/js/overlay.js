@@ -52,26 +52,3 @@ function startBootLines() {
     window.location.href = "../../wikirun.html";
   }, totalDelay + 500);
 }
-
-<<<<<<< HEAD
-// function startBootLines() {
-//     for (let i = 0; i < bootLines.length; i++) {
-//         (function(i) {
-//             setTimeout(function() {
-//                 let newLine = document.createElement("p");
-//                 newLine.textContent = bootLines[i].paragraph;
-//                 loadingContainer.append(newLine);
-//             }, bootLines[i].delay)
-//         })(bootLines[i]);
-
-//     }
-// }
-
-// setInterval(startBootlines, bootLines.delay)
-
-//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
-
-//creo funzione che imposta un timer e
-=======
- 
->>>>>>> c40ced6836c0d8180c86d2b1e26593dd4bb55ced
