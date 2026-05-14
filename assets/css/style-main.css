@@ -1,3 +1,17 @@
+:root {
+  /* Colori */
+  --black: #0a0a0f;
+  --fucsia: #ff00ff;
+  --neon-blue: #00f3ff;
+  --neon-blue-soft: #c9fbff;
+
+  /* Fonts */
+  --fs-h1: 1.8rem;
+  --fs-h2: 1.5rem;
+  --fs-h4: 1.1rem;
+  --fs-p: 1.1rem;
+}
+
 body {
   background-color: var(--black);
   border: 3.5px solid grey;
@@ -5,13 +19,6 @@ body {
   color: var(--neon-blue-soft);
   position: relative;
   font-family: 'VT323', monospace;
-}
-
-:root {
-  --black: #0a0a0f;
-  --fucsia: #ff00ff;
-  --neon-blue: #00f3ff;
-  --neon-blue-soft: #c9fbff;
 }
 
 header {
@@ -78,30 +85,62 @@ span img {
 }
 
 .title h2 {
-  font-size: 26px;
+  font-size: 1.5rem;
   margin: 0;
   display: inline-block;
   color: var(--neon-blue);
 }
 
 .title h3 {
-  font-size: 15px;
+  font-size: 1.1rem;
   margin: 0;
   display: inline-block;
 }
 
-h1,
-h2,
-h4,
+#display-result {
+  padding: 2em;
+  font-size: medium;
+}
+
+#display-result h1 {
+  font-size: var(--fs-h1);
+  color: var(--fucsia);
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+#display-result h2 {
+  font-size: var(--fs-h2);
+  color: var(--fucsia);
+}
+
+#display-result h4,
 h5,
 h6 {
+  font-size: var(--fs-h4);
   color: var(--fucsia);
+}
+
+#display-result p {
+  font-size: var(--fs-p);
+  margin-bottom: 1.2rem;
+  letter-spacing: 0.5px;
+}
+
+#display-result a:hover {
+  text-decoration: underline;
+  text-shadow: 0 0 8px var(--neon-blue);
+}
+
+a {
+  color: var(--neon-blue);
 }
 
 footer {
   display: flex;
   justify-content: space-between;
-  padding: 8px;
+  align-items: center;
+  padding: 8px 2em 8px 2em;
   position: sticky;
   bottom: 0;
   border: 1px solid var(--fucsia);
@@ -112,6 +151,10 @@ footer {
   z-index: 10;
   background-color: var(--black);
   color: var(--neon-blue);
+}
+
+footer img {
+  display: none;
 }
 
 #pulsing-text {
@@ -141,11 +184,25 @@ footer {
   }
 }
 
-#display-result {
-  padding: 2em;
-  font-size: medium;
-}
+/* Layout Tablet */
 
-a {
-  color: var(--neon-blue);
+@media screen and (min-width: 768px) {
+  :root {
+    --fs-h1: 2.8rem;
+    --fs-h2: 2.1rem;
+    --fs-h4: 1.3rem;
+    --fs-p: 1.25rem;
+    --fs-footer: 1rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    height: 50px;
+  }
+
+  footer img {
+    display: block;
+    height: 50px;
+  }
 }
