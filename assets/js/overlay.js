@@ -58,24 +58,3 @@ function startBootLines() {
 }
 
  
-
-
-// function startBootLines() {
-//     for (let i = 0; i < bootLines.length; i++) {
-//         (function(i) {
-//             setTimeout(function() {
-//                 let newLine = document.createElement("p");
-//                 newLine.textContent = bootLines[i].paragraph;
-//                 loadingContainer.append(newLine);
-//             }, bootLines[i].delay)
-//         })(bootLines[i]);
-        
-//     }
-// }
-
-// setInterval(startBootlines, bootLines.delay)
-
-
-//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
-
-//creo funzione che imposta un timer e 
