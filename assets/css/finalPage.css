@@ -1,3 +1,17 @@
+:root {
+  /* Colori */
+  --black: #0a0a0f;
+  --fucsia: #ff00ff;
+  --neon-blue: #00f3ff;
+  --neon-blue-soft: #c9fbff;
+
+  /* Fonts */
+  --fs-h1: 1.8rem;
+  --fs-h2: 1.5rem;
+  --fs-h4: 1.1rem;
+  --fs-p: 1.1rem;
+}
+
 body {
   background-color: var(--black);
   border: 3.5px solid grey;
@@ -6,10 +20,32 @@ body {
   position: relative;
   font-family: 'VT323', monospace;
 }
+
 .border {
+  display: flex;
+  flex-direction: column;
   border: 5px solid var(--fucsia);
   margin: 5px;
   position: relative;
+  min-height: 100vh;
+  padding: 1em;
+}
+
+.border header {
+  display: flex;
+  justify-content: center;
+}
+
+header img {
+  height: 50px;
+  width: 100px;
+}
+
+main {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-grow: 1;
 }
 
 button {
