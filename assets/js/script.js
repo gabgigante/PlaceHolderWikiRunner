@@ -140,7 +140,7 @@ async function loadWikipediaPage(title, fromLink = false) {
       }
       playReturnSound();
       setTimeout(() => {
-        window.location.href = `finalPage.html?score=${clickCount}`;
+        window.location.href = `finalPage.html?score=${clickCount}&time=${count}`;
       }, 300);
     }
 
@@ -272,7 +272,7 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
   }
 }, 1000);
-
+// for block the crt f or cmd f
 window.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
     e.preventDefault();
@@ -280,4 +280,12 @@ window.addEventListener('keydown', (e) => {
 
     return false;
   }
+});
+// random number for the ranking of crew
+const scores = document.querySelectorAll('.score');
+
+scores.forEach((score) => {
+  const randomJumps = Math.floor(Math.random() * 10) + 2;
+
+  score.textContent = `${randomJumps} jumps`;
 });
