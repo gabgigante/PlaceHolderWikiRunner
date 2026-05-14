@@ -27,3 +27,17 @@ button {
     0 0 10px var(--fuxia),
     0 0 20px var(--fuxia);
 }
+
+.start-button {
+  display: inline-block;
+  padding: 12px 24px;
+
+  background: black;
+  color: white;
+
+  text-decoration: none;
+
+  border-radius: 8px;
+
+  font-family: 'VT323', monospace;
+}
