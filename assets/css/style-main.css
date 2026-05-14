@@ -1,16 +1,17 @@
 body {
-  font-family: 'Montserrat', sans-serif;
   background-color: var(--black);
   border: 3.5px solid grey;
   margin: 1rem;
-  color: var(--neon-blue);
+  color: var(--neon-blue-soft);
   position: relative;
+  font-family: 'VT323', monospace;
 }
 
 :root {
   --black: #0a0a0f;
   --fucsia: #ff00ff;
   --neon-blue: #00f3ff;
+  --neon-blue-soft: #c9fbff;
 }
 
 header {
@@ -22,6 +23,7 @@ header {
 .border {
   border: 5px solid var(--fucsia);
   margin: 5px;
+  position: relative;
 }
 
 .title {
@@ -70,11 +72,26 @@ header {
   min-height: 100vh;
 }
 
+span img {
+  width: 60%;
+  height: 60%;
+}
+
+h1 {
+  color: var(--neon-blue);
+}
+
 h2 {
   font-size: 26px;
-  font-family: 'VT323', monospace;
   margin: 0;
   display: inline-block;
+  color: var(--neon-blue);
+}
+
+h4,
+h5,
+h6 {
+  color: var(--neon-blue);
 }
 
 .title h3 {
@@ -94,6 +111,9 @@ footer {
   bottom: 0;
   left: 0;
   width: 100%;
+  z-index: 10;
+  background-color: var(--black);
+  color: var(--neon-blue);
 }
 
 #pulsing-text {
@@ -121,4 +141,13 @@ footer {
       0 0 4px var(--neon-blue),
       0 0 10px var(--neon-blue);
   }
+}
+
+#display-result {
+  padding: 2em;
+  font-size: medium;
+}
+
+a {
+  color: var(--fucsia);
 }

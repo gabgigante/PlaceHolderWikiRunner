@@ -1,7 +1,22 @@
-const button = document.getElementById('open');
+// const button = document.getElementById("open");
 const result = document.getElementById('display-result');
+const counterDisplay = document.getElementById('jumps');
+const seconds = document.getElementById('seconds');
+const minutes = document.getElementById('minutes');
+const jumpText = document.getElementById('jump-text');
 
+let count = 0;
 let currentTitle = '';
+let clickCount = 0;
+
+function updateCounter() {
+  if (counterDisplay) counterDisplay.textContent = clickCount;
+
+  if (jumpText) {
+    jumpText.textContent =
+      clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
+  }
+}
 
 async function isRedirectPage(title) {
   try {
@@ -20,10 +35,16 @@ async function isRedirectPage(title) {
   }
 }
 
-async function loadWikipediaPage(title) {
+async function loadWikipediaPage(title, fromLink = false) {
   try {
+    if (fromLink && title.toLowerCase() !== currentTitle.toLowerCase()) {
+      clickCount++;
+      updateCounter();
+    }
+
     currentTitle = title;
-    //controlla se si è vinto
+
+    //controlla se si ha vinto
     if (title.toLowerCase() === 'michael jackson')
       window.location.href = 'https://google.com';
 
@@ -75,7 +96,7 @@ async function loadWikipediaPage(title) {
 
         console.log('Click su:', finalTitle);
 
-        loadWikipediaPage(finalTitle);
+        loadWikipediaPage(finalTitle, true);
       });
     });
   } catch (error) {
@@ -93,6 +114,9 @@ function disableLink(link) {
 
 async function getWikiAPI() {
   try {
+    clickCount = 0;
+    updateCounter();
+
     const randomResponse = await fetch(
       'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
     );
@@ -112,7 +136,7 @@ async function getWikiAPI() {
     }
 
     if (page.title.toLowerCase() === 'michael jackson') {
-      console.log('Trovato MJ all’inizio, riprovo...');
+      console.log("Trovato MJ all'inizio, riprovo...");
       getWikiAPI();
       return;
     }
@@ -125,17 +149,23 @@ async function getWikiAPI() {
   }
 }
 
-if (button && result) {
-  getWikiAPI();
-
-  button.addEventListener('click', () => {
-    console.log('Nuovo articolo casuale...');
+/*if (button && result) {
+  button.addEventListener("click", () => {
+    console.log("Nuovo articolo casuale...");
     getWikiAPI();
   });
 } else {
-  console.error('Elementi HTML non trovati!');
-}
-const mj = 'Michael Jackson';
-if (currentTitle === mj) {
-  console.log('hai vinto');
-}
+  console.error("Elementi HTML non trovati!");
+}*/
+
+document.addEventListener('DOMContentLoaded', () => {
+  getWikiAPI();
+});
+
+// setInterval(() => {
+//   count++;
+
+//   minutes.textContent = String(count / 60).padStart(2, '0');
+
+//   seconds.textContent = String(count).padStart(2, '0');
+// }, 1000);
