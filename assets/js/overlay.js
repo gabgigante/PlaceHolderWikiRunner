@@ -2,29 +2,80 @@ const loadingContainer = document.getElementById("loading");
 
 const bootLines = [
     {
-        paragrafo: "Connecting to server...",
-        delay: 1000
+        paragraph: "CONNECTING TO SERVER...",
+        delay: 1000,
+        status: "err"
     },
     {
-        paragrafo: "Calling Wiki API...",
-        delay: 1000
+        paragraph: "CALLING WIKI API...",
+        delay: 2000, 
+        status: "err"
     },
-        {
-        paragrafo: "Connecting to server",
-        delay: 1000
+    {
+        paragraph: "FINDING NODE TARGET...",
+        delay: 1000, 
+        status: "err"
     },
-        {
-        paragrafo: "Connecting to server",
-        delay: 1000
+    {
+        paragraph: "TARGET: MICHAEL JACKSON",
+        delay: 2000, 
+        status: "err"
     },
-        {
-        paragrafo: "Connecting to server",
-        delay: 1000
-    },
-        {
-        paragrafo: "Connecting to server",
-        delay: 1000
+    {
+        paragraph: "READY TO START THE GAME",
+        delay: 1000, 
+        status: "err"
     }
 
 ]
-//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay
+
+
+startBootLines();
+
+function startBootLines() {
+    let totalDelay = 0; 
+
+    for (let i = 0; i < bootLines.length; i++) {
+        const line = bootLines[i];
+        totalDelay += line.delay;
+
+        setTimeout(() => {
+            let newLine = document.createElement("p");
+            newLine.textContent = line.paragraph;
+
+            // if (line.status) {
+            //     newLine.classList.add(line.status);
+            // }
+
+            loadingContainer.append(newLine);
+        }, totalDelay);
+
+
+    }
+    setTimeout( () => {
+            window.location.href = "../../index.html";
+        }, totalDelay + 500);
+}
+
+ 
+
+
+// function startBootLines() {
+//     for (let i = 0; i < bootLines.length; i++) {
+//         (function(i) {
+//             setTimeout(function() {
+//                 let newLine = document.createElement("p");
+//                 newLine.textContent = bootLines[i].paragraph;
+//                 loadingContainer.append(newLine);
+//             }, bootLines[i].delay)
+//         })(bootLines[i]);
+        
+//     }
+// }
+
+// setInterval(startBootlines, bootLines.delay)
+
+
+//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
+
+//creo funzione che imposta un timer e 
