@@ -9,15 +9,16 @@ let count = 0;
 let currentTitle = '';
 let clickCount = 0;
 
+// it's the counter of click(jump) that the player does
 function updateCounter() {
   if (counterDisplay) counterDisplay.textContent = clickCount;
-
+  // display the number of click
   if (jumpText) {
     jumpText.textContent =
       clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
   }
 }
-
+//
 async function isRedirectPage(title) {
   try {
     const response = await fetch(
@@ -35,6 +36,7 @@ async function isRedirectPage(title) {
   }
 }
 
+// the game's logic
 async function loadWikipediaPage(title, fromLink = false) {
   try {
     if (fromLink && title.toLowerCase() !== currentTitle.toLowerCase()) {
@@ -44,9 +46,20 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     currentTitle = title;
 
-    //controlla se si ha vinto
+    // check if you win
     if (title.toLowerCase() === 'michael jackson') {
-      window.location.href = `vittoria.html?score=${clickCount}`;
+      const savedBest = localStorage.getItem('bestScore');
+
+      const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
+
+      // nuovo record
+      if (clickCount < bestScore) {
+        localStorage.setItem('bestScore', String(clickCount));
+
+        console.log('NUOVO RECORD');
+      }
+
+      window.location.href = `finalPage.html?score=${clickCount}`;
     }
 
     const redirectTrap = await isRedirectPage(title);
@@ -55,7 +68,6 @@ async function loadWikipediaPage(title, fromLink = false) {
       console.log('Skipping redirect:', title);
       return;
     }
-
     const response = await fetch(
       `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(title)}&prop=text&format=json&origin=*`,
     );
@@ -106,13 +118,14 @@ async function loadWikipediaPage(title, fromLink = false) {
     result.innerHTML = 'Error loading Wikipedia article: ' + title;
   }
 }
-
+// disable the external link
 function disableLink(link) {
   link.removeAttribute('href');
   link.style.cursor = 'default';
   link.style.pointerEvents = 'none';
 }
 
+// pick a random page from wikipedia
 async function getWikiAPI() {
   try {
     clickCount = 0;
@@ -135,13 +148,14 @@ async function getWikiAPI() {
     if (!page || !page.title) {
       throw new Error('Titolo non valido');
     }
-
+    // if the random page is mj
     if (page.title.toLowerCase() === 'michael jackson') {
       console.log("Trovato MJ all'inizio, riprovo...");
       getWikiAPI();
       return;
     }
 
+    //if don't have load a wikipedia page
     loadWikipediaPage(page.title);
   } catch (error) {
     console.error(error);
@@ -162,7 +176,7 @@ async function getWikiAPI() {
 document.addEventListener('DOMContentLoaded', () => {
   getWikiAPI();
 });
-
+// create the timer
 const intervalId = setInterval(() => {
   count++;
 
@@ -173,3 +187,12 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
   }
 }, 10);
+
+// intercept the ctr/cmd f
+document.addEventListener('keydown', (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
+    e.preventDefault();
+
+    console.log('Ricerca bloccata');
+  }
+});
