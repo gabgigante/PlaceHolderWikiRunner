@@ -1,0 +1,29 @@
+body {
+  background-color: var(--black);
+  border: 3.5px solid grey;
+  margin: 1rem;
+  color: var(--neon-blue-soft);
+  position: relative;
+  font-family: 'VT323', monospace;
+}
+.border {
+  border: 5px solid var(--fucsia);
+  margin: 5px;
+  position: relative;
+}
+
+button {
+  max-width: 3rem;
+  background-color: rgba(255, 0, 255, 0.1);
+  color: var(--fuxia);
+  font-weight: bolder;
+  font-size: 12px;
+  border: var(--fuxia), solid, 3px;
+  align-self: center;
+  padding: 3rem;
+
+  text-shadow:
+    0 0 5px var(--fuxia),
+    0 0 10px var(--fuxia),
+    0 0 20px var(--fuxia);
+}

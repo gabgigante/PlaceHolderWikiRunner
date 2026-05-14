@@ -45,8 +45,9 @@ async function loadWikipediaPage(title, fromLink = false) {
     currentTitle = title;
 
     //controlla se si ha vinto
-    if (title.toLowerCase() === 'michael jackson')
-      window.location.href = 'https://google.com';
+    if (title.toLowerCase() === 'michael jackson') {
+      window.location.href = `vittoria.html?score=${clickCount}`;
+    }
 
     const redirectTrap = await isRedirectPage(title);
 
