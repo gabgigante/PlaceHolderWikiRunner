@@ -14,11 +14,10 @@
 
 body {
   background-color: var(--black);
-  border: 3.5px solid grey;
-  margin: 1rem;
   color: var(--neon-blue-soft);
   position: relative;
-  font-family: "VT323", monospace;
+  font-family: 'VT323', monospace;
+  margin: 1rem;
 }
 
 header {
@@ -27,10 +26,18 @@ header {
   width: 100%;
 }
 
-.border {
-  border: 5px solid var(--fucsia);
-  margin: 5px;
+.border-grey {
+  border-style: solid;
+  border-color: grey;
+  border-width: 3.5px 3.5px 0 3.5px;
+}
+
+.border-fucsia {
   position: relative;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 5px 5px 0 5px;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .title {
@@ -54,9 +61,11 @@ header {
 
 .overlay {
   pointer-events: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: repeating-linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0,
@@ -64,7 +73,7 @@ header {
     rgba(0, 0, 0, 0) 100%
   );
   background-size: auto 4px;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .wikirun-protocol {
@@ -77,11 +86,6 @@ header {
 
 .container {
   min-height: 100vh;
-}
-
-span img {
-  width: 60%;
-  height: 60%;
 }
 
 .title h2 {
@@ -132,18 +136,16 @@ h6 {
   text-shadow: 0 0 8px var(--neon-blue);
 }
 
-a {
+#display-result a {
   color: var(--neon-blue);
 }
 
 footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 2em 8px 2em;
   position: sticky;
   bottom: 0;
-  border: 1px solid var(--fucsia);
+  border-style: solid;
+  border-color: grey;
+  border-width: 0 3.5px 3.5px 3.5px;
   box-sizing: border-box;
   bottom: 0;
   left: 0;
@@ -153,7 +155,37 @@ footer {
   color: var(--neon-blue);
 }
 
-footer img {
+.border {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 2em 8px 2em;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 1px 5px 5px 5px;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+p {
+  font-size: var(--fs-p);
+}
+
+.border > * {
+  flex: 1;
+  display: flex;
+}
+
+.border > *:nth-child(1) {
+  justify-content: flex-start;
+} /* Testo a sinistra */
+.border > *:nth-child(2) {
+  justify-content: center;
+} /* LOGO AL CENTRO PERFETTO */
+.border > *:nth-child(3) {
+  justify-content: flex-end;
+}
+
+.logo img {
   display: none;
 }
 
@@ -185,7 +217,6 @@ footer img {
 }
 
 /* Layout Tablet */
-
 @media screen and (min-width: 768px) {
   :root {
     --fs-h1: 2.8rem;
@@ -198,10 +229,11 @@ footer img {
   .logo {
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 50px;
   }
 
-  footer img {
+  .logo img {
     display: block;
     height: 50px;
   }
