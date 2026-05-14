@@ -4,7 +4,7 @@ body {
   margin: 1rem;
   color: var(--neon-blue-soft);
   position: relative;
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
 }
 
 :root {
@@ -148,4 +148,64 @@ footer {
 
 a {
   color: var(--neon-blue);
+}
+
+#display-result {
+  padding: 2em;
+  font-size: medium;
+  color: var(--neon-blue-soft); /* keep your theme color */
+}
+
+/* Restore Wikipedia table styling */
+#display-result table {
+  border-collapse: collapse;
+  display: table;
+  width: auto;
+  max-width: 100%;
+}
+
+#display-result table td,
+#display-result table th {
+  border: 1px solid #555;
+  padding: 4px 8px;
+}
+
+/* Restore image sizing */
+#display-result img {
+  max-width: 100%;
+  height: auto;
+  width: auto; /* overrides any inline width that gets stripped */
+}
+
+/* Fix floated infoboxes */
+#display-result .infobox {
+  float: right;
+  clear: right;
+  margin: 0 0 1em 1em;
+  max-width: 300px;
+  width: auto !important;
+  border: 1px solid var(--fucsia);
+}
+
+/* Fix thumb images */
+#display-result .thumbinner {
+  width: auto !important;
+  max-width: 100%;
+}
+
+#display-result .thumbcaption {
+  font-size: 0.8em;
+  color: #aaa;
+}
+
+#display-result table,
+#display-result table td,
+#display-result table th,
+#display-result table tr,
+#display-result table div,
+#display-result .infobox,
+#display-result .wikitable {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
 }
