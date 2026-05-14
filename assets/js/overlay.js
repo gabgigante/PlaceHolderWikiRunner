@@ -1,30 +1,30 @@
-const loadingContainer = document.getElementById('loading');
+const loadingContainer = document.getElementById("loading");
 
 const bootLines = [
   {
-    paragraph: 'CONNECTING TO SERVER...',
+    paragraph: "CONNECTING TO SERVER...",
     delay: 1000,
-    status: 'err',
+    status: "err",
   },
   {
-    paragraph: 'CALLING WIKI API...',
+    paragraph: "CALLING WIKI API...",
     delay: 2000,
-    status: 'err',
+    status: "err",
   },
   {
-    paragraph: 'FINDING NODE TARGET...',
+    paragraph: "FINDING NODE TARGET...",
     delay: 1000,
-    status: 'err',
+    status: "err",
   },
   {
-    paragraph: 'TARGET: MICHAEL JACKSON',
+    paragraph: "TARGET: MICHAEL JACKSON",
     delay: 2000,
-    status: 'err',
+    status: "err",
   },
   {
-    paragraph: 'READY TO START THE GAME',
+    paragraph: "READY TO START THE GAME",
     delay: 1000,
-    status: 'err',
+    status: "err",
   },
 ];
 
@@ -38,7 +38,7 @@ function startBootLines() {
     totalDelay += line.delay;
 
     setTimeout(() => {
-      let newLine = document.createElement('p');
+      let newLine = document.createElement("p");
       newLine.textContent = line.paragraph;
 
       // if (line.status) {
@@ -49,6 +49,6 @@ function startBootLines() {
     }, totalDelay);
   }
   setTimeout(() => {
-    window.location.href = '../../wikirun.html';
+    window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
   }, totalDelay + 500);
 }
