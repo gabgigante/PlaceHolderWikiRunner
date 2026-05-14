@@ -49,7 +49,7 @@ body{
     /* font-family: "Montserrat", sans-serif; */
     background-color: var(--black);
     color: var(--neon-blue);
-    border: grey, solid, 3px;
+    border: grey solid 3px;
     margin: 1rem;
     font-size:2.5rem;
     letter-spacing: 3px;
@@ -61,7 +61,7 @@ body{
 }
 
 .border{
-    border: #ff00ff, solid, 5px;
+    border: #ff00ff solid 5px;
     margin: 0.5rem;
     padding:2rem;
 }
@@ -128,7 +128,13 @@ h3{
 }
 
 .target-node{
-    border: var(--fuxia), solid, 1px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    border: var(--fuxia) solid 1px;
     color: var(--fuxia);
     background-color: rgba(255, 0, 255, 0.1);
     padding: 2rem;
@@ -148,17 +154,13 @@ h3{
 
 svg{
     fill: var(--neon-blue);
-    margin-top: 0.7rem;
-    width: 1.5rem;
-    height: 1.5rem;
+    min-width: 30px;
+    max-width: 30px;
+    min-height: 30px;
+    max-width:30px;
 }
 
-.target-node-locked{
-    display: flex;
-    flex-direction: row;
-    gap: 1rem;
-    margin-bottom: 1rem;
-}
+
 
 .rules{
     text-align: start;
@@ -186,8 +188,8 @@ button{
     background-color: rgba(255, 0, 255, 0.1);
     color: var(--fuxia);
     font-weight: bolder;
-    font-size: 2rem;
-    border: var(--fuxia), solid, 3px;
+    font-size: 2.5rem;
+    border: var(--fuxia) solid 3px;
     align-self: center;
     padding: 2rem;
 
@@ -197,15 +199,29 @@ button{
     0 0 20px var(--fuxia);
 }
 
+a{
+    text-decoration: none;
+    color: var(--fuxia);
+    /* padding: 2rem;
+    max-width: 35rem; */
+}
+
 .crew-ranking{
         margin-bottom: 3.5rem;
 
 }
+
+.ranking-and-diagnostics{
+    display: flex;
+    flex-direction: column;
+}
+
 .ranking-and-diagnostics article p{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     font-weight: bold;
+    gap: 2rem;
     font-size: 3rem;
     margin-bottom: 1rem;
     /* text-shadow:
@@ -214,10 +230,7 @@ button{
     0 0 20px var(--neon-blue); */
 }
 
-a{
-    text-decoration: none;
-    color: var(--fuxia);
-}
+
 
 @media(min-width:789px){
     .target-node{
@@ -272,16 +285,32 @@ a{
         gap:6rem;
     }
 
+    .hero-main{
+        max-width: 75%;
+        border-right-style:groove;
+    }
+
     .crew-ranking{
         margin-top:7rem;
     }
 
     .system-diagnostics{
-        margin-top:7rem;
+        margin-top:4rem;
     }
 
     button{
+        margin-top: 2rem;
         width: 45rem;
         padding:4rem;
+    }
+
+    button:hover{
+    background-color: var(--neon-blue);
+    color: var(--fuxia);
+    cursor: pointer;
+    }
+
+    a:hover{
+        color: var(--fuxia);
     }
 }
