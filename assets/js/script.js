@@ -186,13 +186,4 @@ const intervalId = setInterval(() => {
   if (count >= 3600) {
     clearInterval(intervalId);
   }
-}, 10);
-
-// intercept the ctr/cmd f
-document.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key === 'f') {
-    e.preventDefault();
-
-    console.log('Ricerca bloccata');
-  }
-});
+}, 1000);
