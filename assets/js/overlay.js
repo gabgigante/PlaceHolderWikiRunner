@@ -53,7 +53,7 @@ function startBootLines() {
 
     }
     setTimeout( () => {
-            window.location.href = "../../index.html";
+            window.location.href = "../../wikirun.html";
         }, totalDelay + 500);
 }
 
