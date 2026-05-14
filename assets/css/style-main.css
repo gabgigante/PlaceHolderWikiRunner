@@ -18,6 +18,7 @@ body {
   position: relative;
   font-family: 'VT323', monospace;
   margin: 1rem;
+  min-width: 375px;
 }
 
 header {
