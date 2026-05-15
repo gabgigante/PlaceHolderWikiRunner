@@ -39,49 +39,24 @@ window.addEventListener("keydown", (e)=>{
 startBootLines();
 
 function startBootLines() {
-    let totalDelay = 0; 
+  let totalDelay = 0;
 
-    for (let i = 0; i < bootLines.length; i++) {
-        const line = bootLines[i];
-        totalDelay += line.delay;
+  for (let i = 0; i < bootLines.length; i++) {
+    const line = bootLines[i];
+    totalDelay += line.delay;
 
-        setTimeout(() => {
-            let newLine = document.createElement("p");
-            newLine.textContent = line.paragraph;
+    setTimeout(() => {
+      let newLine = document.createElement("p");
+      newLine.textContent = line.paragraph;
 
-            // if (line.status) {
-            //     newLine.classList.add(line.status);
-            // }
+      // if (line.status) {
+      //     newLine.classList.add(line.status);
+      // }
 
-            loadingContainer.append(newLine);
-        }, totalDelay);
-
-
-    }
-    setTimeout( () => {
-            window.location.href = "../../index.html";
-        }, totalDelay + 500);
+      loadingContainer.append(newLine);
+    }, totalDelay);
+  }
+  setTimeout(() => {
+    window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
+  }, totalDelay + 500);
 }
-
- 
-
-
-// function startBootLines() {
-//     for (let i = 0; i < bootLines.length; i++) {
-//         (function(i) {
-//             setTimeout(function() {
-//                 let newLine = document.createElement("p");
-//                 newLine.textContent = bootLines[i].paragraph;
-//                 loadingContainer.append(newLine);
-//             }, bootLines[i].delay)
-//         })(bootLines[i]);
-        
-//     }
-// }
-
-// setInterval(startBootlines, bootLines.delay)
-
-
-//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
-
-//creo funzione che imposta un timer e 
