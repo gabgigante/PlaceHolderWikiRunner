@@ -24,13 +24,13 @@ const bestMinutes = String(Math.floor(bestTime / 60)).padStart(2, '0');
 
 const bestSeconds = String(bestTime % 60).padStart(2, '0');
 
-document.querySelector('h1').textContent = `You won in ${score} jumps`;
+document.getElementById('nr-of-jumps').textContent = `You won in ${score} jumps`;
 
-document.querySelector('h2').textContent = `Time: ${minutes}:${seconds}`;
+document.getElementById('time').textContent = `Time: ${minutes}:${seconds}`;
 
-document.querySelector('h3').textContent = `Best score: ${bestScore}`;
+document.getElementById('best-score').textContent = `Best score: ${bestScore}`;
 
-document.querySelector('h4').textContent =
+document.getElementById('best-time').textContent =
   `Best time: ${bestMinutes}:${bestSeconds}`;
 
 const rawPath = params.get('path');
