@@ -19,12 +19,9 @@
   </head>
   <body>
     <div class="noise"></div>
-    <div class="border">
-      <main class="glow" id="loading">
-        <section></section>
-        <!-- <button>Press enter to skip</button> -->
-      </main>
-    </div>
+    <main class="border glow container" id="loading" aria-busy="true">
+      <p class="glow press-enter" aria-label="Press Enter to skip loading">Press enter to skip</p>
+    </main>
     <script src="./assets/js/overlay.js"></script>
 </body>
 </html>

@@ -5,7 +5,6 @@
 }
 
 :root{
-    /* --black: #0f0b01; */
     --black: #0a0a0f;
     --fuxia: #ff00ff;
     --neon-blue: #00f3ff;
@@ -18,9 +17,7 @@ html{
 
 body{
     position:relative;
-    /* max-width: 789px; */
     min-width:375px;
-    /* font-family: "Montserrat", sans-serif; */
     /* height: 100vh; */
     background-color: var(--black);
     color: var(--neon-blue);
@@ -43,30 +40,6 @@ body{
     opacity: 0.2;
 }
 
-main{
-    display: flex;
-    flex-direction: column; 
-    font-size: 5rem;
-    gap: 10rem;
-    padding-left: 8rem;
-    
-    /* align-items: end;*/
-
-    /* justify-content: center; 
-    align-items: flex-end;
-    position: relative; */
-
-    margin: 0;
-    height: 100vh;
-    padding-bottom: 20px; 
-    /* z-index: 1; */ 
-
-
-
-
-
-}
-
 .border{
     border: #ff00ff solid 5px;
     height: 100vh;
@@ -74,9 +47,16 @@ main{
     padding:2rem;
 }
 
-.blue-words{
-    color: var(--neon-blue);
+.press-enter{
+    animation: pulse 1s infinite;
 }
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
 
 .glow{
     text-shadow:
@@ -85,37 +65,44 @@ main{
         0 0 20px var(--neon-blue);
 }
 
-section{
+.container{
     display: flex;
-    flex-direction: column;
-
+    flex-direction: column; 
+    font-size: 3.5rem;
 }
 
-/*button{
 
-    color: var(--fuxia);
-    font-weight: bolder;
-    font-size: 2.5rem;
-    border: var(--fuxia) solid 3px;
-    align-self: center;
-    padding: 2rem;
-    z-index: 1;
+.boot-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 8rem;
+    gap: 8rem;
+}
 
 
+@media(min-width:789px){
 
-    position: fixed;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    .container{
+        font-size: 5rem;
+    }
 
-}/*
+}
+@media (min-width: 1024px){
 
+    .container{
+        display: flex;
+        flex-direction: column;
+        gap: 10rem;
+        padding-left: 2rem;
 
-    max-width: 35rem;
-    /* background-color: rgba(255, 0, 255, 0.1); */
-    /* padding: 10px 20px; */
-        /* position: relative; */
-    /* text-shadow:
-    0 0 5px var(--fuxia),
-    0 0 10px var(--fuxia),
-    0 0 20px var(--fuxia); */
+    }
+
+    .press-enter{
+        align-self: flex-end;
+    }
+
+    .boot-container{
+        margin-top: 2rem;
+        /* gap: 8rem; */
+    }
+}

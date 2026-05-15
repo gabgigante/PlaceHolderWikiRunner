@@ -5,7 +5,6 @@
 }
 
 :root{
-    /* --black: #0f0b01; */
     --black: #0a0a0f;
     --fuxia: #ff00ff;
     --neon-blue: #00f3ff;
@@ -30,23 +29,11 @@ html{
 
 }
 
-/*.noise {
-    pointer-events: none;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-image: url(https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExd2xmeGh5NWh4NXYybzIxdnJ4ODQ0M3E4OWh6bnl1a2RyYzY5Z2xrMiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/KYOD96tSm8Ovm/giphy.gif);
-    background-repeat: no-repeat;
-    background-size: cover;
-    z-index: -1;
-    opacity: 0.2;
-} */
 
 body{
     position:relative;
     /* max-width: 789px; */
     min-width:375px;
-    /* font-family: "Montserrat", sans-serif; */
     background-color: var(--black);
     color: var(--neon-blue);
     border: grey solid 3px;
