@@ -186,7 +186,12 @@ async function loadWikipediaPage(title, fromLink = false) {
   <h1>${title}</h1>
   ${html}
 `;
-
+    result.querySelectorAll("*").forEach((el) => {
+      el.style.removeProperty("background");
+      el.style.removeProperty("background-color");
+      //el.style.removeProperty("background-image");
+      el.style.removeProperty("color");
+    });
     window.scrollTo(0, 0);
 
     result.querySelectorAll("a").forEach((link) => {
