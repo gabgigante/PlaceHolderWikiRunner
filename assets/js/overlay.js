@@ -118,8 +118,15 @@ function startBootLines() {
       }
     }, totalDelay);
   }
-  setTimeout(() => {
-    window.location.href = "../../wikirun.html";
-    // window.location.href = "../PlaceHolderWikiRunner/wikirun.html";
+  setTimeout(async () => {
+    const primary = "../../wikirun.html";
+    const fallback = "/PlaceHolderWikiRunner/wikirun.html";
+
+    try {
+      const res = await fetch(primary, { method: "HEAD" });
+      window.location.href = res.ok ? primary : fallback;
+    } catch {
+      window.location.href = fallback;
+    }
   }, totalDelay + 1100);
 }
