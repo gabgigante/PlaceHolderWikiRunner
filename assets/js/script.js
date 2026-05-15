@@ -128,20 +128,34 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     // check if you win
     if (title.toLowerCase() === 'michael jackson') {
+      clearInterval(intervalId);
+
+      // BEST SCORE
       const savedBest = localStorage.getItem('bestScore');
 
       const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
 
-      // nuovo record
       if (clickCount < bestScore) {
         localStorage.setItem('bestScore', String(clickCount));
-
-        console.log('NUOVO RECORD');
       }
+
+      // BEST TIME
+      const savedBestTime = localStorage.getItem('bestTime');
+
+      const bestTime =
+        savedBestTime !== null ? Number(savedBestTime) : Infinity;
+
+      if (count < bestTime) {
+        localStorage.setItem('bestTime', String(count));
+      }
+
       playReturnSound();
+
       setTimeout(() => {
-        window.location.href = `finalPage.html?score=${clickCount}`;
+        window.location.href = `finalPage.html?score=${clickCount}&time=${count}`;
       }, 300);
+
+      return;
     }
 
     const redirectTrap = await isRedirectPage(title);
@@ -272,7 +286,7 @@ const intervalId = setInterval(() => {
     clearInterval(intervalId);
   }
 }, 1000);
-
+// for block the crt f or cmd f
 window.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
     e.preventDefault();
@@ -280,4 +294,12 @@ window.addEventListener('keydown', (e) => {
 
     return false;
   }
+});
+// random number for the ranking of crew
+const scores = document.querySelectorAll('.score');
+
+scores.forEach((score) => {
+  const randomJumps = Math.floor(Math.random() * 10) + 2;
+
+  score.textContent = `${randomJumps} jumps`;
 });
