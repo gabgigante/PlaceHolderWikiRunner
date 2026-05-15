@@ -15,3 +15,13 @@ document.querySelector('h1').textContent = `You won in ${score} jumps`;
 document.querySelector('h2').textContent = `Time: ${minutes}:${seconds}`;
 
 document.querySelector('h3').textContent = `Best score: ${bestScore}`;
+
+window.addEventListener('load', () => {
+  const navigationEntries = performance.getEntriesByType('navigation');
+
+  if (navigationEntries[0].type === 'reload') {
+    console.log('Pagina refreshata');
+
+    window.location.href = './wikirun.html';
+  }
+});
