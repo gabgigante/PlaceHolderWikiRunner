@@ -75,12 +75,17 @@ const bootLines = [
 
 const paragraph = document.getElementById("press-enter");
 
+function handleStart() {
+  initAudio();
+  startBootLines();
+  paragraph.textContent = "Press enter to skip";
+}
+
 document.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    startBootLines();
-    paragraph.textContent = "Press enter to skip";
-  }
+  if (e.key === "Enter") handleStart();
 });
+
+document.addEventListener("touchstart", handleStart, { once: true });
 
 // document.addEventListener("keydown", (e)=>{
 //     if(e.key === "Enter"){
