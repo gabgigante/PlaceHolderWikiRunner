@@ -1,32 +1,40 @@
 const loadingContainer = document.getElementById("loading");
 
 const bootLines = [
-  {
-    paragraph: "CONNECTING TO SERVER...",
-    delay: 1000,
-    status: "err",
-  },
-  {
-    paragraph: "CALLING WIKI API...",
-    delay: 2000,
-    status: "err",
-  },
-  {
-    paragraph: "FINDING NODE TARGET...",
-    delay: 1000,
-    status: "err",
-  },
-  {
-    paragraph: "TARGET: MICHAEL JACKSON",
-    delay: 2000,
-    status: "err",
-  },
-  {
-    paragraph: "READY TO START THE GAME",
-    delay: 1000,
-    status: "err",
-  },
-];
+    {
+        paragraph: "CONNECTING TO SERVER...",
+        delay: 1000,
+        status: "err"
+    },
+    {
+        paragraph: "CALLING WIKI API...",
+        delay: 2000, 
+        status: "err"
+    },
+    {
+        paragraph: "FINDING NODE TARGET...",
+        delay: 1000, 
+        status: "err"
+    },
+    {
+        paragraph: "TARGET: MICHAEL JACKSON",
+        delay: 2000, 
+        status: "err"
+    },
+    {
+        paragraph: "READY TO START THE GAME",
+        delay: 1000, 
+        status: "err"
+    }
+
+]
+
+window.addEventListener("keydown", (e)=>{
+    if(e.key === "enter"){
+         window.location.href = "../../index.html";
+
+    }
+})
 
 startBootLines();
 
