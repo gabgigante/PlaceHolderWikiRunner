@@ -15,16 +15,13 @@
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
       rel="stylesheet"
     />
-    <title>Wikirun</title>
+    <title>WikiRun</title>
   </head>
   <body>
     <div class="noise"></div>
-    <div class="border">
-      <main class="glow" id="loading">
-        <section></section>
-        <!-- <button>Press enter to skip</button> -->
-      </main>
-    </div>
+    <main class="border glow container" id="loading" aria-busy="true">
+      <p class="glow press-enter" aria-label="Press Enter to skip loading">Press enter to skip</p>
+    </main>
     <script src="./assets/js/overlay.js"></script>
-</body>
+  </body>
 </html>

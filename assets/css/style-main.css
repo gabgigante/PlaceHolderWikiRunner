@@ -25,24 +25,38 @@ header {
   border-bottom: 2px solid var(--fucsia);
   overflow: hidden;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--black);
+  border-style: solid;
+  border-color: grey;
+  border-width: 3.5px 3.5px 0 3.5px;
+}
+
+.header-border {
+  position: relative;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 5px 5px 3px 5px;
+  margin: 0.5rem 0.5rem 0 0.5rem;
 }
 
 .border-grey {
   border-style: solid;
   border-color: grey;
-  border-width: 3.5px 3.5px 0 3.5px;
+  border-width: 0 3.5px 0 3.5px;
 }
 
 .border-fucsia {
   position: relative;
   border-style: solid;
   border-color: var(--fucsia);
-  border-width: 5px 5px 0 5px;
-  margin: 0.5rem 0.5rem 0 0.5rem;
+  border-width: 0 5px 0 5px;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 .title {
-  display: flex;
   align-items: center;
   gap: 25px;
   white-space: nowrap;
@@ -155,15 +169,6 @@ h6 {
   font-size: var(--fs-p);
   margin-bottom: 1.2rem;
   letter-spacing: 0.5px;
-}
-
-#display-result a:hover {
-  text-decoration: underline;
-  text-shadow: 0 0 8px var(--neon-blue);
-}
-
-#display-result a {
-  color: var(--neon-blue);
 }
 
 #display-result {
@@ -343,10 +348,10 @@ p {
   }
 }
 /* Force all text to your theme color */
-#display-result,
+/*#display-result,
 #display-result * {
   color: var(--neon-blue-soft) !important;
-}
+}*/
 
 /* Strip all backgrounds everywhere */
 #display-result,
@@ -359,7 +364,7 @@ p {
 /* Keep links distinct */
 #display-result a,
 #display-result a * {
-  color: var(--neon-blue) !important;
+  color: var(--neon-blue);
 }
 
 /* Make table borders visible on dark background */
@@ -380,4 +385,43 @@ p {
   max-width: 100%;
   height: auto;
   width: auto;
+}
+
+#display-result a:hover {
+  background-color: var(--neon-blue) !important;
+  color: var(--black);
+  text-decoration: none;
+}
+
+#display-result .infobox {
+  float: right;
+  clear: right;
+  margin: 0 0 1em 1em;
+  max-width: 300px;
+  width: 300px !important;
+  border-collapse: collapse;
+  /* remove table-layout: fixed from here */
+}
+
+/* Only force full width on colspan rows (image/caption rows) */
+#display-result .infobox td[colspan],
+#display-result .infobox th[colspan] {
+  width: 100% !important;
+  text-align: center;
+  display: table-cell;
+}
+
+/* Images inside infobox fill their cell */
+#display-result .infobox img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Normal two-column rows keep auto sizing */
+#display-result .infobox td:not([colspan]),
+#display-result .infobox th:not([colspan]) {
+  width: auto;
+  text-align: left;
 }
