@@ -29,6 +29,12 @@ const bootLines = [
 
 ]
 
+window.addEventListener("keydown", (e)=>{
+    if(e.key === "enter"){
+         window.location.href = "../../index.html";
+
+    }
+})
 
 startBootLines();
 
