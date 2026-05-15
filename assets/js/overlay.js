@@ -1,32 +1,40 @@
 const loadingContainer = document.getElementById("loading");
 
 const bootLines = [
-  {
-    paragraph: "CONNECTING TO SERVER...",
-    delay: 1000,
-    status: "err",
-  },
-  {
-    paragraph: "CALLING WIKI API...",
-    delay: 2000,
-    status: "err",
-  },
-  {
-    paragraph: "FINDING NODE TARGET...",
-    delay: 1000,
-    status: "err",
-  },
-  {
-    paragraph: "TARGET: MICHAEL JACKSON",
-    delay: 2000,
-    status: "err",
-  },
-  {
-    paragraph: "READY TO START THE GAME",
-    delay: 1000,
-    status: "err",
-  },
-];
+    {
+        paragraph: "CONNECTING TO SERVER...",
+        delay: 1000,
+        status: "err"
+    },
+    {
+        paragraph: "CALLING WIKI API...",
+        delay: 2000, 
+        status: "err"
+    },
+    {
+        paragraph: "FINDING NODE TARGET...",
+        delay: 1000, 
+        status: "err"
+    },
+    {
+        paragraph: "TARGET: MICHAEL JACKSON",
+        delay: 2000, 
+        status: "err"
+    },
+    {
+        paragraph: "READY TO START THE GAME",
+        delay: 1000, 
+        status: "err"
+    }
+
+]
+
+window.addEventListener("keydown", (e)=>{
+    if(e.key === "enter"){
+         window.location.href = "../../index.html";
+
+    }
+})
 
 startBootLines();
 
@@ -49,29 +57,6 @@ function startBootLines() {
     }, totalDelay);
   }
   setTimeout(() => {
-    window.location.href = "../../wikirun.html";
+    window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
   }, totalDelay + 500);
 }
-
-<<<<<<< HEAD
-// function startBootLines() {
-//     for (let i = 0; i < bootLines.length; i++) {
-//         (function(i) {
-//             setTimeout(function() {
-//                 let newLine = document.createElement("p");
-//                 newLine.textContent = bootLines[i].paragraph;
-//                 loadingContainer.append(newLine);
-//             }, bootLines[i].delay)
-//         })(bootLines[i]);
-
-//     }
-// }
-
-// setInterval(startBootlines, bootLines.delay)
-
-//devo creare un array di oggetti, ogni oggetto ha: paragrafo, tempo di delay, status
-
-//creo funzione che imposta un timer e
-=======
- 
->>>>>>> c40ced6836c0d8180c86d2b1e26593dd4bb55ced
