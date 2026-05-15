@@ -123,7 +123,7 @@ function startBootLines() {
   }
   setTimeout(() => {
     const isGithubPages = window.location.hostname.includes("github.io");
-
+    // rewrite this to be a function that can be called, it's also used in the enter/skip function
     window.location.href = isGithubPages
       ? "/PlaceHolderWikiRunner/wikirun.html"
       : "../../wikirun.html";
