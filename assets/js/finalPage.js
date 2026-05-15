@@ -1,8 +1,9 @@
-if (localStorage.getItem('refreshing') === 'true') {
-  localStorage.removeItem('refreshing');
+const navigationType = performance.getEntriesByType('navigation')[0].type;
 
-  window.location.href = './wikirun.html';
+if (navigationType === 'reload') {
+  window.location.href = '../wikirun.html';
 }
+
 const params = new URLSearchParams(window.location.search);
 
 const score = params.get('score');
@@ -43,7 +44,3 @@ if (rawPath) {
 } else {
   pathContainer.textContent = 'No path history found';
 }
-
-window.addEventListener('beforeunload', () => {
-  localStorage.setItem('refreshing', 'true');
-});

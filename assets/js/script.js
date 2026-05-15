@@ -314,3 +314,13 @@ scores.forEach((score) => {
   score.textContent = `${randomJumps} jumps`;
 });
 const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
+
+document.addEventListener('DOMContentLoaded', () => {
+  const scores = document.querySelectorAll('.score');
+
+  scores.forEach((score) => {
+    const randomJumps = Math.floor(Math.random() * 10) + 2;
+
+    score.textContent = `${randomJumps} jumps`;
+  });
+});
