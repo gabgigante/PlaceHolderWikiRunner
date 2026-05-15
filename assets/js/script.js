@@ -130,14 +130,23 @@ async function loadWikipediaPage(title, fromLink = false) {
     if (title.toLowerCase() === 'michael jackson') {
       clearInterval(intervalId);
 
+      // BEST SCORE
       const savedBest = localStorage.getItem('bestScore');
 
       const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
 
       if (clickCount < bestScore) {
         localStorage.setItem('bestScore', String(clickCount));
+      }
 
-        console.log('NUOVO RECORD');
+      // BEST TIME
+      const savedBestTime = localStorage.getItem('bestTime');
+
+      const bestTime =
+        savedBestTime !== null ? Number(savedBestTime) : Infinity;
+
+      if (count < bestTime) {
+        localStorage.setItem('bestTime', String(count));
       }
 
       playReturnSound();
