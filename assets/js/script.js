@@ -122,34 +122,30 @@ async function isRedirectPage(title) {
 // the game's logic
 async function loadWikipediaPage(title, fromLink = false) {
   try {
-    if (fromLink && title.toLowerCase() !== currentTitle.toLowerCase()) {
-      clickCount++;
-      updateCounter();
-    }
-
+    const previousTitle = currentTitle; // save before overwriting
     currentTitle = title;
 
     // check if you win
-    if (title.toLowerCase() === 'michael jackson') {
+    if (title.toLowerCase() === "michael jackson") {
       clearInterval(intervalId);
 
       // BEST SCORE
-      const savedBest = localStorage.getItem('bestScore');
+      const savedBest = localStorage.getItem("bestScore");
 
       const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
 
       if (clickCount < bestScore) {
-        localStorage.setItem('bestScore', String(clickCount));
+        localStorage.setItem("bestScore", String(clickCount));
       }
 
       // BEST TIME
-      const savedBestTime = localStorage.getItem('bestTime');
+      const savedBestTime = localStorage.getItem("bestTime");
 
       const bestTime =
         savedBestTime !== null ? Number(savedBestTime) : Infinity;
 
       if (count < bestTime) {
-        localStorage.setItem('bestTime', String(count));
+        localStorage.setItem("bestTime", String(count));
       }
 
       playReturnSound();
@@ -162,11 +158,16 @@ async function loadWikipediaPage(title, fromLink = false) {
     }
 
     const redirectTrap = await isRedirectPage(title);
-
     if (redirectTrap) {
-      console.log("Skipping redirect:", title);
+      currentTitle = previousTitle; // restore if we bail
       return;
     }
+
+    if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
+      clickCount++;
+      updateCounter();
+    }
+
     const response = await fetch(
       `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(title)}&prop=text&format=json&origin=*`,
     );
@@ -199,7 +200,12 @@ async function loadWikipediaPage(title, fromLink = false) {
         return;
       }
 
-      const articleName = decodeURIComponent(wikiMatch[1]);
+      let articleName;
+      try {
+        articleName = decodeURIComponent(wikiMatch[1]);
+      } catch (e) {
+        articleName = wikiMatch[1]; // fallback to raw string
+      }
 
       const finalTitle = articleName.replace(/_/g, " ");
 
@@ -290,8 +296,8 @@ const intervalId = setInterval(() => {
   }
 }, 1000);
 // for block the crt f or cmd f
-window.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
     e.preventDefault();
     e.stopPropagation();
 
@@ -299,7 +305,7 @@ window.addEventListener('keydown', (e) => {
   }
 });
 // random number for the ranking of crew
-const scores = document.querySelectorAll('.score');
+const scores = document.querySelectorAll(".score");
 
 scores.forEach((score) => {
   const randomJumps = Math.floor(Math.random() * 10) + 2;
