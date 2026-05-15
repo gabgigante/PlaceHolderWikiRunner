@@ -31,6 +31,8 @@ function playReturnSound() {
   playTone(120, 0.08, "square", 0.02, -30);
 }
 
+document.addEventListener("keydown", initAudio, { once: true });
+
 
 const loadingContainer = document.getElementById("loading");
 
@@ -52,7 +54,7 @@ const bootLines = [
     },
     {
         paragraph: "TARGET: MICHAEL JACKSON",
-        delay: 2000, 
+        delay: 500, 
         status: "err"
     },
     {
@@ -63,8 +65,28 @@ const bootLines = [
 
 ]
 
+const paragraph = document.getElementById("press-enter");
 
 document.addEventListener("keydown", (e)=>{
+    if(e.key === "Enter"){
+        startBootLines();
+        paragraph.textContent = "Press enter to skip"
+    }
+})
+
+
+// document.addEventListener("keydown", (e)=>{
+//     if(e.key === "Enter"){
+
+//     }
+// })
+
+function startBootLines() {
+    let totalDelay = 0;
+    let bootContainer = document.createElement("section");
+    bootContainer.classList.add("boot-container");
+
+    document.addEventListener("keydown", (e)=>{
     if(e.key === "Enter"){
 
         window.location.href = "../../wikirun.html";
@@ -72,13 +94,6 @@ document.addEventListener("keydown", (e)=>{
 
     }
 })
-
-startBootLines();
-
-function startBootLines() {
-    let totalDelay = 0;
-    let bootContainer = document.createElement("section");
-    bootContainer.classList.add("boot-container")
 
   for (let i = 0; i < bootLines.length; i++) {
     const line = bootLines[i];
