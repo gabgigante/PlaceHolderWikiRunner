@@ -88,6 +88,7 @@ const jumpText = document.getElementById('jump-text');
 let count = 0;
 let currentTitle = '';
 let clickCount = 0;
+let pathHistory = [];
 
 // it's the counter of click(jump) that the player does
 function updateCounter() {
@@ -129,7 +130,7 @@ async function loadWikipediaPage(title, fromLink = false) {
     // check if you win
     if (title.toLowerCase() === 'michael jackson') {
       clearInterval(intervalId);
-
+      const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
       // BEST SCORE
       const savedBest = localStorage.getItem('bestScore');
 
@@ -152,7 +153,7 @@ async function loadWikipediaPage(title, fromLink = false) {
       playReturnSound();
 
       setTimeout(() => {
-        window.location.href = `finalPage.html?score=${clickCount}&time=${count}`;
+        window.location.href = `finalPage.html?score=${clickCount}&time=${count}&path=${encodedPath}`;
       }, 300);
 
       return;
@@ -214,6 +215,7 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     result.innerHTML = 'Error loading Wikipedia article: ' + title;
   }
+  pathHistory.push(title);
 }
 // disable the external link
 function disableLink(link) {
@@ -291,7 +293,7 @@ window.addEventListener('keydown', (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
     e.preventDefault();
     e.stopPropagation();
-
+    window.alert('eh volevi');
     return false;
   }
 });
@@ -303,3 +305,4 @@ scores.forEach((score) => {
 
   score.textContent = `${randomJumps} jumps`;
 });
+const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
