@@ -4,29 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./assets/css/style-main.css" />
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="./assets/img/favicon_wikirun/favicon-16x16.png"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
     />
-    <title>Wiki Run</title>
+    <title>WikiRun</title>
   </head>
   <body>
-    <div class="overlay noise"></div>
-    <div class="border">
-      <header>
+    <header>
+      <div class="header-border">
         <section class="title">
           <h2>WIKI RUN</h2>
           <h3 class="wikirun-protocol">
             WIKI RUN PROTOCOL ACTIVE - <span class="blue-words">Beat it</span>
           </h3>
         </section>
-      </header>
-      <main>
-        <div id="display-result"></div>
-      </main>
-      <footer>
+      </div>
+    </header>
+    <div class="overlay noise"></div>
+    <div class="border-grey">
+      <div class="border-fucsia">
+        <main>
+          <div id="display-result"></div>
+        </main>
+      </div>
+    </div>
+    <footer>
+      <div class="border">
         <div class="jump">
           <p id="n-jumps">
             <span id="jump-text">NUMBER OF JUMP</span>
@@ -41,8 +52,8 @@
             <span id="minutes">00</span>:<span id="seconds">00</span>
           </p>
         </div>
-      </footer>
-    </div>
+      </div>
+    </footer>
     <script src="./assets/js/script.js"></script>
   </body>
 </html>

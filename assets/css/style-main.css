@@ -14,27 +14,49 @@
 
 body {
   background-color: var(--black);
-  border: 3.5px solid grey;
-  margin: 1rem;
   color: var(--neon-blue-soft);
   position: relative;
   font-family: "VT323", monospace;
+  margin: 1rem;
+  min-width: 375px;
 }
 
 header {
   border-bottom: 2px solid var(--fucsia);
   overflow: hidden;
   width: 100%;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background-color: var(--black);
+  border-style: solid;
+  border-color: grey;
+  border-width: 3.5px 3.5px 0 3.5px;
 }
 
-.border {
-  border: 5px solid var(--fucsia);
-  margin: 5px;
+.header-border {
   position: relative;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 5px 5px 3px 5px;
+  margin: 0.5rem 0.5rem 0 0.5rem;
+}
+
+.border-grey {
+  border-style: solid;
+  border-color: grey;
+  border-width: 0 3.5px 0 3.5px;
+}
+
+.border-fucsia {
+  position: relative;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 0 5px 0 5px;
+  margin: 0 0.5rem 0 0.5rem;
 }
 
 .title {
-  display: flex;
   align-items: center;
   gap: 25px;
   white-space: nowrap;
@@ -54,9 +76,11 @@ header {
 
 .overlay {
   pointer-events: none;
-  position: absolute;
-  width: 100%;
-  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: repeating-linear-gradient(
     180deg,
     rgba(0, 0, 0, 0) 0,
@@ -64,7 +88,7 @@ header {
     rgba(0, 0, 0, 0) 100%
   );
   background-size: auto 4px;
-  z-index: 1;
+  z-index: 9999;
 }
 
 .wikirun-protocol {
@@ -79,16 +103,36 @@ header {
   min-height: 100vh;
 }
 
-span img {
-  width: 60%;
-  height: 60%;
-}
-
 .title h2 {
   font-size: 1.5rem;
   margin: 0;
   display: inline-block;
   color: var(--neon-blue);
+
+  animation: pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0% {
+    text-shadow:
+      0 0 5px var(--neon-blue),
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue);
+  }
+
+  50% {
+    text-shadow:
+      0 0 0 var (--neon-blue),
+      0 0 0 var(--neon-blue),
+      0 0 0 var(--neon-blue);
+  }
+
+  100% {
+    text-shadow:
+      0 0 5px var(--neon-blue),
+      0 0 10px var(--neon-blue),
+      0 0 20px var(--neon-blue);
+  }
 }
 
 .title h3 {
@@ -125,86 +169,6 @@ h6 {
   font-size: var(--fs-p);
   margin-bottom: 1.2rem;
   letter-spacing: 0.5px;
-}
-
-#display-result a:hover {
-  text-decoration: underline;
-  text-shadow: 0 0 8px var(--neon-blue);
-}
-
-a {
-  color: var(--neon-blue);
-}
-
-footer {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 2em 8px 2em;
-  position: sticky;
-  bottom: 0;
-  border: 1px solid var(--fucsia);
-  box-sizing: border-box;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  z-index: 10;
-  background-color: var(--black);
-  color: var(--neon-blue);
-}
-
-footer img {
-  display: none;
-}
-
-#pulsing-text {
-  animation: text-pulse 1.5s infinite ease-in-out;
-}
-
-@keyframes text-pulse {
-  0% {
-    opacity: 1;
-    text-shadow:
-      0 0 4px var(--neon-blue),
-      0 0 10px var(--neon-blue);
-  }
-
-  50% {
-    opacity: 0.5;
-    text-shadow:
-      0 0 1px var(--neon-blue),
-      0 0 2px var(--neon-blue);
-  }
-
-  100% {
-    opacity: 1;
-    text-shadow:
-      0 0 4px var(--neon-blue),
-      0 0 10px var(--neon-blue);
-  }
-}
-
-/* Layout Tablet */
-
-@media screen and (min-width: 768px) {
-  :root {
-    --fs-h1: 2.8rem;
-    --fs-h2: 2.1rem;
-    --fs-h4: 1.3rem;
-    --fs-p: 1.25rem;
-    --fs-footer: 1rem;
-  }
-
-  .logo {
-    display: flex;
-    align-items: center;
-    height: 50px;
-  }
-
-  footer img {
-    display: block;
-    height: 50px;
-  }
 }
 
 #display-result {
@@ -265,4 +229,199 @@ footer img {
   background: transparent !important;
   background-color: transparent !important;
   background-image: none !important;
+}
+
+footer {
+  position: sticky;
+  bottom: 0;
+  border-style: solid;
+  border-color: grey;
+  border-width: 0 3.5px 3.5px 3.5px;
+  box-sizing: border-box;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: var(--black);
+  color: var(--neon-blue);
+}
+
+.border {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 2em 8px 2em;
+  border-style: solid;
+  border-color: var(--fucsia);
+  border-width: 3px 5px 5px 5px;
+  margin: 0 0.5rem 0.5rem 0.5rem;
+}
+
+p {
+  font-size: var(--fs-p);
+}
+
+.border > * {
+  flex: 1;
+  display: flex;
+}
+
+.border > *:nth-child(1) {
+  justify-content: flex-start;
+} /* Testo a sinistra */
+.border > *:nth-child(2) {
+  justify-content: center;
+} /* LOGO AL CENTRO PERFETTO */
+.border > *:nth-child(3) {
+  justify-content: flex-end;
+}
+
+.logo img {
+  display: none;
+}
+
+#pulsing-text {
+  animation: text-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes text-pulse {
+  0% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px var(--neon-blue),
+      0 0 10px var(--neon-blue);
+  }
+
+  50% {
+    opacity: 0.5;
+    text-shadow:
+      0 0 1px var(--neon-blue),
+      0 0 2px var(--neon-blue);
+  }
+
+  100% {
+    opacity: 1;
+    text-shadow:
+      0 0 4px var(--neon-blue),
+      0 0 10px var(--neon-blue);
+  }
+}
+
+/* Layout Tablet */
+@media screen and (min-width: 768px) {
+  :root {
+    --fs-h1: 2.8rem;
+    --fs-h2: 2.1rem;
+    --fs-h4: 1.3rem;
+    --fs-p: 1.25rem;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+  }
+
+  .logo img {
+    display: block;
+    height: 50px;
+  }
+}
+
+/* Layout Desktop */
+@media screen and (min-width: 1024px) {
+  :root {
+    --fs-h1: 3.5rem;
+    --fs-h2: 2.5rem;
+    --fs-h4: 1.5rem;
+    --fs-p: 1.3rem;
+  }
+}
+
+/* Layout Large Desktop */
+@media screen and (min-width: 1440px) {
+  :root {
+    --fs-h1: 4.5rem;
+    --fs-h2: 3rem;
+    --fs-p: 1.4rem;
+  }
+}
+/* Force all text to your theme color */
+/*#display-result,
+#display-result * {
+  color: var(--neon-blue-soft) !important;
+}*/
+
+/* Strip all backgrounds everywhere */
+#display-result,
+#display-result * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Keep links distinct */
+#display-result a,
+#display-result a * {
+  color: var(--neon-blue);
+}
+
+/* Make table borders visible on dark background */
+#display-result table {
+  border-collapse: collapse;
+  width: auto;
+  max-width: 100%;
+}
+
+#display-result td,
+#display-result th {
+  border: 1px solid var(--fucsia) !important;
+  padding: 4px 8px;
+}
+
+/* Fix images */
+#display-result img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
+}
+
+#display-result a:hover {
+  background-color: var(--neon-blue) !important;
+  color: var(--black);
+  text-decoration: none;
+}
+
+#display-result .infobox {
+  float: right;
+  clear: right;
+  margin: 0 0 1em 1em;
+  max-width: 300px;
+  width: 300px !important;
+  border-collapse: collapse;
+  /* remove table-layout: fixed from here */
+}
+
+/* Only force full width on colspan rows (image/caption rows) */
+#display-result .infobox td[colspan],
+#display-result .infobox th[colspan] {
+  width: 100% !important;
+  text-align: center;
+  display: table-cell;
+}
+
+/* Images inside infobox fill their cell */
+#display-result .infobox img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* Normal two-column rows keep auto sizing */
+#display-result .infobox td:not([colspan]),
+#display-result .infobox th:not([colspan]) {
+  width: auto;
+  text-align: left;
 }
