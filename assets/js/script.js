@@ -128,20 +128,25 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     // check if you win
     if (title.toLowerCase() === 'michael jackson') {
+      clearInterval(intervalId);
+
       const savedBest = localStorage.getItem('bestScore');
 
       const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
 
-      // nuovo record
       if (clickCount < bestScore) {
         localStorage.setItem('bestScore', String(clickCount));
 
         console.log('NUOVO RECORD');
       }
+
       playReturnSound();
+
       setTimeout(() => {
         window.location.href = `finalPage.html?score=${clickCount}&time=${count}`;
       }, 300);
+
+      return;
     }
 
     const redirectTrap = await isRedirectPage(title);
