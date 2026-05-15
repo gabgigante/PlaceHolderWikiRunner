@@ -11,7 +11,7 @@ function initAudio() {
   }
 }
 
-function playTone(freq, duration, type = 'square', volume = 0.06, detune = 0) {
+function playTone(freq, duration, type = "square", volume = 0.06, detune = 0) {
   if (!audioCtx) return;
 
   const osc = audioCtx.createOscillator();
@@ -94,7 +94,7 @@ function playErrorSound() {
 function playDataSound() {
   for (let i = 0; i < 6; i++) {
     setTimeout(() => {
-      playTone(2000 + Math.random() * 4000, 0.02, 'sine', 0.015);
+      playTone(2000 + Math.random() * 4000, 0.02, "sine", 0.015);
     }, i * 40);
   }
 }
@@ -102,7 +102,7 @@ function playDataSound() {
 function playEmergencySound() {
   for (let i = 0; i < 8; i++) {
     setTimeout(() => {
-      playTone(i % 2 === 0 ? 800 : 400, 0.18, 'square', 0.06);
+      playTone(i % 2 === 0 ? 800 : 400, 0.18, "square", 0.06);
     }, i * 200);
   }
 }
@@ -138,7 +138,7 @@ function updateCounter() {
 
   if (jumpText) {
     jumpText.textContent =
-      clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
+      clickCount <= 1 ? "NUMBER OF JUMP " : "NUMBER OF JUMPS ";
   }
 }
 
@@ -258,23 +258,25 @@ async function loadWikipediaPage(title, fromLink = false) {
     const data = await response.json();
 
     if (!data.parse || !data.parse.text) {
-      throw new Error('Pagina non trovata');
+      throw new Error("Pagina non trovata");
     }
 
-    const html = data.parse.text['*'];
+    const html = data.parse.text["*"];
 
     result.innerHTML = `
-      <h1>${title}</h1>
-      ${html}
-    `;
-
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
+  <h1>${title}</h1>
+  ${html}
+`;
+    result.querySelectorAll("*").forEach((el) => {
+      el.style.removeProperty("background");
+      el.style.removeProperty("background-color");
+      //el.style.removeProperty("background-image");
+      el.style.removeProperty("color");
     });
+    window.scrollTo(0, 0);
 
-    result.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
+    result.querySelectorAll("a").forEach((link) => {
+      const href = link.getAttribute("href");
 
       if (!href) {
         disableLink(link);
@@ -298,9 +300,9 @@ async function loadWikipediaPage(title, fromLink = false) {
         articleName = wikiMatch[1];
       }
 
-      const finalTitle = articleName.replace(/_/g, ' ');
+      const finalTitle = articleName.replace(/_/g, " ");
 
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
 
         playKeyType();
@@ -313,7 +315,7 @@ async function loadWikipediaPage(title, fromLink = false) {
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = 'Error loading Wikipedia article: ' + title;
+    result.innerHTML = "Error loading Wikipedia article: " + title;
   }
 }
 
@@ -332,13 +334,13 @@ async function getWikiAPI() {
     updateCounter();
 
     const randomResponse = await fetch(
-      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
+      "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
     );
 
     const randomData = await randomResponse.json();
 
     if (!randomData.query || !randomData.query.pages) {
-      throw new Error('Nessuna pagina casuale trovata');
+      throw new Error("Nessuna pagina casuale trovata");
     }
 
     const pages = Object.values(randomData.query.pages);
@@ -346,7 +348,7 @@ async function getWikiAPI() {
     const page = pages[0];
 
     if (!page || !page.title) {
-      throw new Error('Titolo non valido');
+      throw new Error("Titolo non valido");
     }
 
     if (page.title.toLowerCase() === 'michael jackson') {
