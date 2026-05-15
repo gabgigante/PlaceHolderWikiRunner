@@ -16,7 +16,7 @@ body {
   background-color: var(--black);
   color: var(--neon-blue-soft);
   position: relative;
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   margin: 1rem;
   min-width: 375px;
 }
@@ -341,4 +341,43 @@ p {
     --fs-h2: 3rem;
     --fs-p: 1.4rem;
   }
+}
+/* Force all text to your theme color */
+#display-result,
+#display-result * {
+  color: var(--neon-blue-soft) !important;
+}
+
+/* Strip all backgrounds everywhere */
+#display-result,
+#display-result * {
+  background: transparent !important;
+  background-color: transparent !important;
+  background-image: none !important;
+}
+
+/* Keep links distinct */
+#display-result a,
+#display-result a * {
+  color: var(--neon-blue) !important;
+}
+
+/* Make table borders visible on dark background */
+#display-result table {
+  border-collapse: collapse;
+  width: auto;
+  max-width: 100%;
+}
+
+#display-result td,
+#display-result th {
+  border: 1px solid var(--fucsia) !important;
+  padding: 4px 8px;
+}
+
+/* Fix images */
+#display-result img {
+  max-width: 100%;
+  height: auto;
+  width: auto;
 }
