@@ -381,3 +381,9 @@ p {
   height: auto;
   width: auto;
 }
+
+#display-result a:hover {
+  background-color: var(--neon-blue) !important;
+  color: var(--black) !important;
+  text-decoration: none !important;
+}
