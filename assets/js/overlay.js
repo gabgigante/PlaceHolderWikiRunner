@@ -118,15 +118,11 @@ function startBootLines() {
       }
     }, totalDelay);
   }
-  setTimeout(async () => {
-    const primary = "../../wikirun.html";
-    const fallback = "/PlaceHolderWikiRunner/wikirun.html";
+  setTimeout(() => {
+    const isGithubPages = window.location.hostname.includes("github.io");
 
-    try {
-      const res = await fetch(primary, { method: "HEAD" });
-      window.location.href = res.ok ? primary : fallback;
-    } catch {
-      window.location.href = fallback;
-    }
+    window.location.href = isGithubPages
+      ? "/PlaceHolderWikiRunner/wikirun.html"
+      : "../../wikirun.html";
   }, totalDelay + 1100);
 }
