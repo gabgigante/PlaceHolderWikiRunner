@@ -95,8 +95,8 @@ function startBootLines() {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      // window.location.href = "../../wikirun.html";
-       window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
+      window.location.href = "../../wikirun.html";
+      //  window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
     }
   });
 
@@ -119,7 +119,7 @@ function startBootLines() {
     }, totalDelay);
   }
   setTimeout(() => {
-    // window.location.href = "../../wikirun.html";
-    window.location.href = "../PlaceHolderWikiRunner/wikirun.html";
+    window.location.href = "../../wikirun.html";
+    // window.location.href = "../PlaceHolderWikiRunner/wikirun.html";
   }, totalDelay + 1100);
 }
