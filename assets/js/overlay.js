@@ -1,3 +1,37 @@
+let audioCtx = null;
+
+function initAudio() {
+  if (audioCtx) return;
+  audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  if (audioCtx.state === "suspended") audioCtx.resume();
+}
+
+function playTone(freq, duration, type = "square", volume = 0.06, detune = 0) {
+  if (!audioCtx) return;
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  osc.type = type;
+  osc.frequency.value = freq;
+  osc.detune.value = detune;
+  gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    0.001,
+    audioCtx.currentTime + duration,
+  );
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  osc.start();
+  osc.stop(audioCtx.currentTime + duration);
+}
+
+
+function playReturnSound() {
+  // CRLF mechanical clunk
+  playTone(600, 0.04, "sawtooth", 0.035);
+  playTone(120, 0.08, "square", 0.02, -30);
+}
+
+
 const loadingContainer = document.getElementById("loading");
 
 const bootLines = [
@@ -29,11 +63,11 @@ const bootLines = [
 
 ]
 
+
 document.addEventListener("keydown", (e)=>{
     if(e.key === "Enter"){
 
         window.location.href = "../../wikirun.html";
-
         //  window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
 
     }
@@ -55,6 +89,8 @@ function startBootLines() {
     newLine.textContent = line.paragraph;
     loadingContainer.append(bootContainer);
     bootContainer.append(newLine);
+    playReturnSound();
+
     }, totalDelay);
   }
   setTimeout(() => {
