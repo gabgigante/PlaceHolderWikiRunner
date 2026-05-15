@@ -95,7 +95,7 @@ h2{
     display: flex;
     flex-direction: column;
     /* align-items: center; */
-    gap: 3rem;
+    gap: 2.5rem;
 }
 
 h3{
@@ -103,6 +103,12 @@ h3{
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
     font-weight: 600;
+}
+
+.briefing{
+    border-bottom-style: groove;
+    border-top-style: groove;
+    padding-bottom: 1rem;
 }
 
 .briefing p {
@@ -120,7 +126,7 @@ h3{
     flex-direction: row;
     justify-content: center;
     gap: 1rem;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     border: var(--fuxia) solid 1px;
     color: var(--fuxia);
     background-color: rgba(255, 0, 255, 0.1);
@@ -151,6 +157,9 @@ svg{
 
 .rules{
     text-align: start;
+    border-bottom-style: groove;
+    border-top-style: groove;
+    padding-bottom: 1rem;
 }
 
 .rules p{
@@ -189,8 +198,9 @@ button{
 a{
     text-decoration: none;
     color: var(--fuxia);
-    /* padding: 2rem;
-    max-width: 35rem; */
+    max-width: 35rem;
+    padding: 2rem;
+    align-self: center;
 }
 
 .crew-ranking{
@@ -222,6 +232,17 @@ a{
     color: var(--fuxia);
 }
 
+.pulse{
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.2; }
+    100% { opacity: 1; }
+}
+
+
 .logo-mobile{
     width:100px;
     align-self: center;
@@ -244,6 +265,7 @@ a{
     .border{
         padding:5rem;
         overflow: hidden;
+        padding-bottom: 1rem;
     }
     .hidden{
         display:block;
@@ -254,7 +276,7 @@ a{
         flex-direction: row;
         gap:3rem;
         justify-content: space-between;
-        margin-bottom:4rem;
+        margin-bottom:1rem;
         color: var(--fuxia);
         margin-top: -30px;
     }
@@ -297,6 +319,7 @@ a{
     .hero-main{
         max-width: 75%;
         border-right-style:groove;
+        padding-right: 1rem;
     }
 
     .crew-ranking{
@@ -308,9 +331,9 @@ a{
     }
 
     button{
-        margin-top: 2rem;
+        /* margin-top: 2rem; */
         width: 45rem;
-        padding:4rem;
+        padding:3rem;
     }
 
     button:hover{
