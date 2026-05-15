@@ -87,6 +87,7 @@ const counterDisplay = document.getElementById('jumps');
 const seconds = document.getElementById('seconds');
 const minutes = document.getElementById('minutes');
 const jumpText = document.getElementById('jump-text');
+const achievements = [];
 
 let count = 0;
 let currentTitle = '';
@@ -318,3 +319,16 @@ document.addEventListener('DOMContentLoaded', () => {
     score.textContent = `${randomJumps} jumps`;
   });
 });
+
+if (clickCount <= 10) {
+  achievements.push(' Moonwalker');
+}
+
+if (count <= 120) {
+  achievements.push(' Smooth Criminal');
+}
+
+if (clickCount <= 5) {
+  achievements.push(' King of Pop');
+}
+localStorage.setItem('achievements', JSON.stringify(achievements));

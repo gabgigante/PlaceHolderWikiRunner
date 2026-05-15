@@ -44,3 +44,30 @@ if (rawPath) {
 } else {
   pathContainer.textContent = 'No path history found';
 }
+
+const savedAchievements =
+  JSON.parse(localStorage.getItem('achievements')) || [];
+
+const achievementContainer = document.querySelector('.achievements');
+
+savedAchievements.forEach((achievement) => {
+  const p = document.createElement('p');
+
+  p.textContent = achievement;
+
+  achievementContainer.appendChild(p);
+});
+
+function showAchievement(text) {
+  const div = document.createElement('div');
+
+  div.classList.add('achievement-popup');
+
+  div.textContent = `UNLOCKED: ${text}`;
+
+  document.body.appendChild(div);
+
+  setTimeout(() => {
+    div.remove();
+  }, 3000);
+}
