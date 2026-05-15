@@ -15,7 +15,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
     />
-    <title>You Won!</title>
+    <title>Wikirun</title>
   </head>
   <body>
     <div class="border">
@@ -23,17 +23,23 @@
         <img src="./assets/img/logo.png" alt="Logo" />
       </header>
       <main>
-        <h1>You won in</h1>
-        <h2></h2>
-        <h3></h3>
-        <h4></h4>
-        <div class="achievements">
-          <h2>Achievements Unlocked</h2>
-        </div>
+        <section class="final-result">
+          <h1 class="glow">YOU WON!</h1>
+        </section>
+        <section class="score">
+          <h2>Your score</h2>
+          <p id="nr-of-jumps"></p>
+          <p id="time"></p>
+          <p id="best-score"></p>
+          <p id="best-time"></p>
+          <section class="achievements">
+            <h2>Achievements Unlocked</h2>
+          </section>
 
-        <div class="path-history"></div>
-        <a class="start-button" href="./main.html"> START THE MOONWALK </a>
+          <section class="path-history"></section>
+        </section>
       </main>
+      <a class="start-button" href="./main.html"> TRY AGAIN </a>
     </div>
     <script src="./assets/js/finalPage.js"></script>
   </body>

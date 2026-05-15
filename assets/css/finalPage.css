@@ -43,28 +43,54 @@ header img {
 
 main {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-evenly;
   align-items: center;
   flex-grow: 1;
 }
 
-button {
-  max-width: 3rem;
-  background-color: rgba(255, 0, 255, 0.1);
-  color: var(--fuxia);
-  font-weight: bolder;
-  font-size: 12px;
-  border: var(--fuxia), solid, 3px;
-  align-self: center;
-  padding: 3rem;
-
-  text-shadow:
-    0 0 5px var(--fuxia),
-    0 0 10px var(--fuxia),
-    0 0 20px var(--fuxia);
+h1{
+  color: var(--neon-blue);
+  font-size: 8rem;
 }
 
-.start-button {
+h2{
+  color: var(--fucsia);
+  font-size:3rem;
+}
+
+.glow{
+    text-shadow:
+        0 0 5px var(--neon-blue),
+        0 0 10px var(--neon-blue),
+        0 0 20px var(--neon-blue);
+}
+
+p{
+  font-size:1.6rem;
+}
+
+.start-button{
+    max-width: 9rem;
+    background-color: rgba(255, 0, 255, 0.1);
+    color: var(--fucsia);
+    font-weight: bolder;
+    font-size: 2rem;
+    border: var(--fucsia) solid 3px;
+    align-self: center;
+    padding: 1.5rem;
+    text-decoration: none;
+    cursor:pointer;
+}
+
+.start-button:hover{
+        background-color: var(--neon-blue);
+        color: var(--black);
+        cursor: pointer;
+}
+    /* text-shadow: 0 0 5px var(--fuxia), 0 0 10px var(--fuxia), 0 0 20px var(--fuxia);
+
+/* .start-button {
   display: inline-block;
   padding: 12px 24px;
 
@@ -76,4 +102,4 @@ button {
   border-radius: 8px;
 
   font-family: 'VT323', monospace;
-}
+} */
