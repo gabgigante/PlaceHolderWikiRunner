@@ -16,14 +16,13 @@ body {
   background-color: var(--black);
   color: var(--neon-blue-soft);
   position: relative;
-  font-family: "VT323", monospace;
+  font-family: 'VT323', monospace;
   margin: 1rem;
   min-width: 375px;
 }
 
 header {
   border-bottom: 2px solid var(--fucsia);
-  overflow: hidden;
   width: 100%;
   position: sticky;
   top: 0;
@@ -32,6 +31,7 @@ header {
   border-style: solid;
   border-color: grey;
   border-width: 3.5px 3.5px 0 3.5px;
+  box-sizing: border-box;
 }
 
 .header-border {
@@ -40,6 +40,7 @@ header {
   border-color: var(--fucsia);
   border-width: 5px 5px 3px 5px;
   margin: 0.5rem 0.5rem 0 0.5rem;
+  overflow: hidden;
 }
 
 .border-grey {
