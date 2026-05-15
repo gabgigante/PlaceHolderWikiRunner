@@ -95,8 +95,11 @@ function startBootLines() {
 
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      window.location.href = "../../wikirun.html";
-      //  window.location.href = "/PlaceHolderWikiRunner/wikirun.html";
+      const isGithubPages = window.location.hostname.includes("github.io");
+
+      window.location.href = isGithubPages
+        ? "/PlaceHolderWikiRunner/wikirun.html"
+        : "../../wikirun.html";
     }
   });
 
