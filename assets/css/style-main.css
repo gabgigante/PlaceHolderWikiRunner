@@ -87,7 +87,6 @@ header {
 
 .page-separator {
   margin-left: 100vw;
-  margin-right: 100vw;
   color: var(--fucsia);
 }
 
@@ -440,7 +439,7 @@ p {
 }
 
 .overlay::after {
-  content: "";
+  content: '';
   position: fixed;
   top: 0;
   left: 0;
