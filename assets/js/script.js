@@ -265,16 +265,19 @@ async function loadWikipediaPage(title, fromLink = false) {
     const html = data.parse.text['*'];
 
     result.innerHTML = `
-      <h1>${title}</h1>
-      ${html}
-    `;
+  <h1>${title}</h1>
+  ${html}
+`;
 
     headerTitle.textContent = `${title.toUpperCase()}`;
 
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
+    result.querySelectorAll('*').forEach((el) => {
+      el.style.removeProperty('background');
+      el.style.removeProperty('background-color');
+      //el.style.removeProperty("background-image");
+      el.style.removeProperty('color');
     });
+    window.scrollTo(0, 0);
 
     result.querySelectorAll('a').forEach((link) => {
       const href = link.getAttribute('href');
