@@ -168,13 +168,13 @@ h3 {
   /* z-index: 100; */
 }
 
-svg {
+/* svg {
   fill: var(--neon-blue);
   min-width: 30px;
   max-width: 30px;
   min-height: 30px;
   max-width: 30px;
-}
+} */
 
 .rules {
   text-align: start;
