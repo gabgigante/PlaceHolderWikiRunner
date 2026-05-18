@@ -314,7 +314,13 @@ async function loadWikipediaPage(title, fromLink = false) {
         loadWikipediaPage(finalTitle, true);
       });
     });
-
+    result.querySelectorAll("table:not(.infobox)").forEach((table) => {
+      if (table.closest(".infobox")) return;
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("table-wrapper");
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
     playDataSound();
   } catch (error) {
     console.error(error);
@@ -402,10 +408,48 @@ const intervalId = setInterval(() => {
 window.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
     e.preventDefault();
-
     e.stopPropagation();
 
-    window.alert("eh volevi");
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 99999;
+    `;
+
+    const modal = document.createElement("div");
+    modal.style.cssText = `
+      background-color: #0a0a0f;
+      color: #c9fbff;
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      padding: 2rem;
+      border: 5px solid #ff00ff;
+      outline: 3.5px solid grey;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px rgba(255, 0, 255, 0.3);
+    `;
+
+    modal.innerHTML = `
+      <p style="color: #ff00ff; margin: 0 0 1rem; font-size: 1.8rem;">
+  ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
+</p>
+      <p style="margin: 0 0 1.5rem;">ctrl+f is disabled on this page.</p>
+      <p style="margin: 0 0 1.5rem;">only link hopping is permitted.</p>
+      <button id="closeModal"
+      <button id="closeModal">[ OK ]</button>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    const close = () => overlay.remove();
+    document.getElementById("closeModal").onclick = close;
+    overlay.onclick = (ev) => {
+      if (ev.target === overlay) close();
+    };
 
     return false;
   }

@@ -247,6 +247,25 @@ h6 {
   background-image: none !important;
 }
 
+.table-wrapper {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-bottom: 1.2rem;
+  max-width: 100%;
+}
+
+/* style the scrollbar to match your theme */
+.table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+  background: #0a0a0f;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: #ff00ff;
+  box-shadow: 0 0 6px #ff00ff;
+}
+
 /* Strip all backgrounds everywhere */
 #display-result,
 #display-result * {
@@ -502,4 +521,29 @@ p {
     --fs-p: 1.4rem;
     --marquee-duration: 50s;
   }
+}
+#closeModal {
+  background: transparent;
+  border: 3px solid #00f3ff;
+  color: #00f3ff;
+  font-family: "VT323", monospace;
+  font-size: 1.4rem;
+  padding: 0.3rem 1.5rem;
+  cursor: pointer;
+  text-transform: uppercase;
+  box-shadow: 0 0 4px #00f3ff;
+  transition: all 0.1s linear;
+}
+#closeModal:hover {
+  background: #00f3ff;
+  border: 3px solid #ff00ff;
+  box-shadow: 0 0 4px #ff00ff;
+  color: #ff00ff;
+}
+
+#display-result tr,
+#display-result td,
+#display-result th {
+  height: auto !important;
+  min-height: 0 !important;
 }
