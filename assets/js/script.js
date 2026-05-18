@@ -167,8 +167,6 @@ async function loadWikipediaPage(title, fromLink = false) {
     currentTitle = title;
     const headerTitle = document.getElementById("title");
 
-    pathHistory.push(title);
-
     const redirectTrap = await isRedirectPage(title);
 
     if (redirectTrap) {
@@ -176,7 +174,7 @@ async function loadWikipediaPage(title, fromLink = false) {
 
       return;
     }
-
+    pathHistory.push(title);
     if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
       clickCount++;
 
