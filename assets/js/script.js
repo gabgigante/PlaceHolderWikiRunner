@@ -408,8 +408,13 @@ window.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
     e.preventDefault();
     e.stopPropagation();
+
+    if (document.querySelector(".ctrl-f-overlay")) return; // guard
+
     playEmergencySound();
+
     const overlay = document.createElement("div");
+    overlay.classList.add("ctrl-f-overlay");
     overlay.style.cssText = `
       position: fixed; inset: 0;
       background: rgba(0, 0, 0, 0.75);
@@ -433,11 +438,10 @@ window.addEventListener("keydown", (e) => {
 
     modal.innerHTML = `
       <p style="color: #ff00ff; margin: 0 0 1rem; font-size: 1.8rem;">
-  ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
-</p>
+        ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
+      </p>
       <p style="margin: 0 0 1.5rem;">ctrl+f is disabled on this page.</p>
       <p style="margin: 0 0 1.5rem;">only link hopping is permitted.</p>
-      <button id="closeModal"
       <button id="closeModal">[ OK ]</button>
     `;
 
@@ -449,7 +453,5 @@ window.addEventListener("keydown", (e) => {
     overlay.onclick = (ev) => {
       if (ev.target === overlay) close();
     };
-
-    return false;
   }
 });
