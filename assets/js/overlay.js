@@ -1,3 +1,4 @@
+// javascript file used to animate and to add the sound of the starting page of the project
 let audioCtx = null;
 
 function initAudio() {

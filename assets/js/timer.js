@@ -1,3 +1,4 @@
+//test javascript file used in tandem with index-test.html
 const seconds = document.getElementById("seconds");
 const minutes = document.getElementById("minutes");
 let countSec = 0;
