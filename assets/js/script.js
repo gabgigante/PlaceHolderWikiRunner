@@ -167,8 +167,6 @@ async function loadWikipediaPage(title, fromLink = false) {
     currentTitle = title;
     const headerTitle = document.getElementById('title');
 
-    pathHistory.push(title);
-
     const redirectTrap = await isRedirectPage(title);
 
     if (redirectTrap) {
@@ -176,7 +174,7 @@ async function loadWikipediaPage(title, fromLink = false) {
 
       return;
     }
-
+    pathHistory.push(title);
     if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
       clickCount++;
 
@@ -336,11 +334,11 @@ async function loadWikipediaPage(title, fromLink = false) {
         loadWikipediaPage(finalTitle, true);
       });
     });
-    if (window.innerWidth < 1024) {
-      result.querySelectorAll('table:not(.infobox)').forEach((table) => {
-        if (table.closest('.infobox')) return;
-        const wrapper = document.createElement('div');
-        wrapper.classList.add('table-wrapper');
+    if (window.innerWidth < 768) {
+      result.querySelectorAll("table:not(.infobox)").forEach((table) => {
+        if (table.closest(".infobox")) return;
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("table-wrapper");
         table.parentNode.insertBefore(wrapper, table);
         wrapper.appendChild(table);
       });
@@ -434,7 +432,12 @@ window.addEventListener('keydown', (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    const overlay = document.createElement('div');
+    initAudio();
+    playEmergencySound();
+    if (document.querySelector(".ctrl-f-overlay")) return; // guard
+
+    const overlay = document.createElement("div");
+    overlay.classList.add("ctrl-f-overlay");
     overlay.style.cssText = `
       position: fixed; inset: 0;
       background: rgba(0, 0, 0, 0.75);
@@ -458,11 +461,10 @@ window.addEventListener('keydown', (e) => {
 
     modal.innerHTML = `
       <p style="color: #ff00ff; margin: 0 0 1rem; font-size: 1.8rem;">
-  ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
-</p>
+        ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
+      </p>
       <p style="margin: 0 0 1.5rem;">ctrl+f is disabled on this page.</p>
       <p style="margin: 0 0 1.5rem;">only link hopping is permitted.</p>
-      <button id="closeModal"
       <button id="closeModal">[ OK ]</button>
     `;
 
@@ -474,7 +476,5 @@ window.addEventListener('keydown', (e) => {
     overlay.onclick = (ev) => {
       if (ev.target === overlay) close();
     };
-
-    return false;
   }
 });

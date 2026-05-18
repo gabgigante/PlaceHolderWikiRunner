@@ -79,7 +79,7 @@ const paragraph = document.getElementById("press-enter");
 function handleStart() {
   initAudio();
   startBootLines();
-  if (window.innerWidth < 1025) {
+  if (window.innerWidth < 768) {
     paragraph.textContent = "Tap to skip";
   } else {
     paragraph.textContent = "Press enter to skip";
@@ -141,6 +141,6 @@ function startBootLines() {
       : "../../wikirun.html";
   }, totalDelay + 1100);
 }
-if (window.innerWidth < 1025) {
+if (window.innerWidth < 768) {
   paragraph.textContent = "Tap to boot into the system";
 }
