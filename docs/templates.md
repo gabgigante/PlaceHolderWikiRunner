@@ -8,12 +8,12 @@ WikiRun is a **multi-page static application** composed of four distinct HTML do
 
 ### Pages at a Glance
 
-| Page | File | Purpose | CSS | JS |
-|---|---|---|---|---|
-| Boot Screen | `index.html` | Terminal-style loading animation | `overlay.css` | `overlay.js` |
-| Menu / Briefing | `wikirun.html` | Rules, crew ranking, start button | `style.css` | `script.js` (shared) |
-| Gameplay | `main.html` | Rendered Wikipedia view, timer, jump counter | `style-main.css` | `script.js` (shared) |
-| Results | `finalPage.html` | Score, achievements, path history | `finalPage.css` | `finalPage.js` |
+| Page            | File             | Purpose                                      | CSS              | JS                   |
+| --------------- | ---------------- | -------------------------------------------- | ---------------- | -------------------- |
+| Boot Screen     | `index.html`     | Terminal-style loading animation             | `overlay.css`    | `overlay.js`         |
+| Menu / Briefing | `wikirun.html`   | Rules, crew ranking, start button            | `style.css`      | `script.js` (shared) |
+| Gameplay        | `main.html`      | Rendered Wikipedia view, timer, jump counter | `style-main.css` | `script.js` (shared) |
+| Results         | `finalPage.html` | Score, achievements, path history            | `finalPage.css`  | `finalPage.js`       |
 
 ---
 
@@ -27,11 +27,11 @@ The simplest page in the application. Its sole purpose is to present a retro ter
 ┌────────────────────────────────┐
 │  [noise overlay]               │
 │                                │
-│  ┌── container ────────────┐   │
-│  │  Press enter to boot     │   │
-│  │                          │   │
-│  │  [boot lines appear here] │   │
-│  └──────────────────────────┘   │
+│  ┌── container ─────────────┐  │
+│  │  Press enter to boot     │  │
+│  │                          │  │
+│  │[boot lines appear here]  │  │
+│  └──────────────────────────┘  │
 └────────────────────────────────┘
 ```
 
@@ -48,9 +48,9 @@ Two-column layout on desktop; single column on mobile.
 │  [hidden nav — marquee, desktop only]      │
 │  ┌── border (fuchsia) ────────┐            │
 │  │  ┌─ hero-main ─┐ ┌─ rank ─┐│            │
-│  │  │ WIKIRUN      ││ CREW    ││            │
-│  │  │ Beat it      ││ RANKING ││            │
-│  │  │ // MISSION   ││         ││            │
+│  │  │ WIKIRUN      ││ CREW   ││            │
+│  │  │ Beat it      ││ RANKING││            │
+│  │  │ // MISSION   ││        ││            │
 │  │  │ BRIEFING     ││ DIAG   ││            │
 │  │  │ TARGET: MJ   ││        ││            │
 │  │  │ // RULES     ││ logo   ││            │
@@ -76,16 +76,16 @@ Full-width layout with sticky header and footer.
 ┌────────────────────────────────────────────┐
 │  ┌── header (sticky) ──────────────┐       │
 │  │  WIKI RUN │ Protocol │ Page: X  │       │
-│  └────────────────────────────────┘       │
-│  ┌── main content area ──────────┐        │
-│  │  ┌─#display-result─────────┐  │        │
-│  │  │ Wikipedia article HTML   │  │        │
-│  │  │ (injected dynamically)   │  │        │
-│  │  └─────────────────────────┘  │        │
-│  └───────────────────────────────┘        │
-│  ┌── footer (sticky) ────────────┐        │
-│  │ [Jumps] │ [Logo] │ [Timer]   │        │
-│  └───────────────────────────────┘        │
+│  └────────────────────────────────┘        │
+│  ┌── main content area ──────────┐         │
+│  │  ┌─#display-result─────────┐  │         │
+│  │  │ Wikipedia article HTML  │  │         │
+│  │  │ (injected dynamically)  │  │         │
+│  │  └─────────────────────────┘  │         │
+│  └───────────────────────────────┘         │
+│  ┌── footer (sticky) ────────────┐         │
+│  │  [Jumps] │ [Logo] │ [Timer]   │         │
+│  └───────────────────────────────┘         │
 └────────────────────────────────────────────┘
 ```
 
@@ -106,12 +106,12 @@ Two-column layout on desktop; single column on mobile. Mirrors the menu page str
 ```
 ┌────────────────────────────────────────────┐
 │  ┌── border (fuchsia) ────────┐            │
-│  │  ┌─ hero-main ─┐ ┌─ diag ─┤            │
-│  │  │ WIKIRUN      ││ logo    ││            │
-│  │  │ Beat it      ││         ││            │
-│  │  │ YOU WON!     ││ Score   ││            │
-│  │  │              ││ Achiev  ││            │
-│  │  │ [TRY AGAIN]  ││ Path    ││            │
+│  │  ┌─ hero-main ─┐ ┌─ diag ─┤│            │
+│  │  │ WIKIRUN      ││ logo   ││            │
+│  │  │ Beat it      ││        ││            │
+│  │  │ YOU WON!     ││ Score  ││            │
+│  │  │              ││ Achiev ││            │
+│  │  │ [TRY AGAIN]  ││ Path   ││            │
 │  │  └──────────────┘└────────┘│            │
 │  └────────────────────────────┘            │
 └────────────────────────────────────────────┘
@@ -152,8 +152,8 @@ finalPage.html?score=<jumps>&time=<seconds>&path=<url-encoded-json-path-history>
 
 ### `localStorage` Keys
 
-| Key | Type | Description |
-|---|---|---|
-| `bestScore` | `string` (number) | Fewest jumps to reach the target |
-| `bestTime` | `string` (number) | Fastest time in seconds to reach the target |
-| `achievements` | `string` (JSON array) | Cumulative list of unlocked achievements |
+| Key            | Type                  | Description                                 |
+| -------------- | --------------------- | ------------------------------------------- |
+| `bestScore`    | `string` (number)     | Fewest jumps to reach the target            |
+| `bestTime`     | `string` (number)     | Fastest time in seconds to reach the target |
+| `achievements` | `string` (JSON array) | Cumulative list of unlocked achievements    |
