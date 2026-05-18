@@ -7,7 +7,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="./assets/img/favicon_wikirun/favicon-16x16.png"
+      href="./assets/img/favicon_wikirun/android-chrome-192x192.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -15,24 +15,65 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=VT323&display=swap"
     />
-    <title>You Won!</title>
+    <title>Wikirun</title>
   </head>
   <body>
+    <div class="overlay noise"></div>
     <div class="border">
       <header>
-        <img src="./assets/img/logo.png" alt="Logo" />
+        <!-- <img src="./assets/img/logo.png" alt="Logo" /> -->
+        <nav class="hidden">
+          <ul class="traslate">
+            <li>WIKIRUN PROTOCOL ACTIVE - Beat it</li>
+            <li class="blue-words">MKJ58</li>
+            <li>K - o - P</li>
+            <li class="blue-words">WIKIRUN PROTOCOL ACTIVE - Beat it</li>
+            <li class="blue-words">MKJ58</li>
+            <li>K - o - P</li>
+          </ul>
+        </nav>
       </header>
       <main>
-        <h1>You won in</h1>
-        <h2></h2>
-        <h3></h3>
-        <h4></h4>
-        <div class="achievements">
-          <h2>Achievements Unlocked</h2>
-        </div>
+        <div class="hero-container">
+          <section class="hero-main">
+            <section class="wikirun-header">
+              <h1 class="glow">WIKIRUN</h1>
+              <h2>
+                WIKIRUN PROTOCOL ACTIVE -
+                <span class="blue-words">Beat it</span>
+              </h2>
+            </section>
+            <section class="results">
+              <h3 class="glow">YOU WON!</h1>
+            </section>
 
-        <div class="path-history"></div>
-        <a class="start-button" href="./main.html"> START THE MOONWALK </a>
+            <a href="./main.html"   class="blue-words" id="start-btn"
+              > TRY AGAIN!
+              </a>
+          </section>
+
+          <section class="all-score">
+            <img class="logo-desktop" src="./assets/img/logo.png" alt="logo" />
+            <article class="your-score">
+              <h4>Your score</h2>
+              <p id="nr-of-jumps"></p>
+              <p id="time"></p>
+              <p id="best-score"></p>
+              <p id="best-time"></p>
+
+              <section class="achievements">
+                <h4>Achievements Unlocked</h2>
+              </section>
+
+              <section class="path-history"></section>
+            </article>
+    
+
+          </section>
+          <section class="img-logo">
+            <img class="logo-mobile" src="./assets/img/logo.png" alt="logo" />
+          </section>
+        </div>
       </main>
     </div>
     <script src="./assets/js/finalPage.js"></script>

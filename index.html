@@ -7,7 +7,7 @@
     <link
       rel="icon"
       type="image/x-icon"
-      href="./assets/img/favicon_wikirun/favicon-16x16.png"
+      href="./assets/img/favicon_wikirun/android-chrome-192x192.png"
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -18,9 +18,15 @@
     <title>WikiRun</title>
   </head>
   <body>
-    <div class="noise"></div>
+    <div class="overlay noise"></div>
     <main class="border glow container" id="loading" aria-busy="true">
-      <p class="glow press-enter" aria-label="Press Enter to skip loading">Press enter to skip</p>
+      <p
+        id="press-enter"
+        class="glow press-enter"
+        aria-label="Press Enter to boot the system"
+      >
+        Press enter to boot the system
+      </p>
     </main>
     <script src="./assets/js/overlay.js"></script>
   </body>

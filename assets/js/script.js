@@ -1,72 +1,100 @@
-// web
+// Javascript file that handles game logic and everything related to the playing page
 let audioCtx = null;
 
 function initAudio() {
   if (audioCtx) return;
+
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  if (audioCtx.state === 'suspended') audioCtx.resume();
+
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
 }
 
-function playTone(freq, duration, type = 'square', volume = 0.06, detune = 0) {
+function playTone(freq, duration, type = "square", volume = 0.06, detune = 0) {
   if (!audioCtx) return;
+
   const osc = audioCtx.createOscillator();
   const gain = audioCtx.createGain();
+
   osc.type = type;
   osc.frequency.value = freq;
   osc.detune.value = detune;
+
   gain.gain.setValueAtTime(volume, audioCtx.currentTime);
+
   gain.gain.exponentialRampToValueAtTime(
     0.001,
     audioCtx.currentTime + duration,
   );
+
   osc.connect(gain);
   gain.connect(audioCtx.destination);
+
   osc.start();
   osc.stop(audioCtx.currentTime + duration);
 }
 
 function playKeyType() {
-  // Per-character key click (mechanical)
-  playTone(900 + Math.random() * 200, 0.015, 'square', 0.018);
-  // Noise burst for click texture
+  playTone(900 + Math.random() * 200, 0.015, "square", 0.018);
+
   if (!audioCtx) return;
+
   const bufferSize = audioCtx.sampleRate * 0.008;
+
   const buffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+
   const data = buffer.getChannelData(0);
+
   for (let i = 0; i < bufferSize; i++) {
     data[i] =
       (Math.random() * 2 - 1) * 0.12 * Math.exp(-i / (bufferSize * 0.05));
   }
+
   const src = audioCtx.createBufferSource();
+
   src.buffer = buffer;
+
   const gain = audioCtx.createGain();
+
   gain.gain.value = 0.04;
+
   src.connect(gain);
   gain.connect(audioCtx.destination);
+
   src.start();
 }
 
 function playReturnSound() {
-  // CRLF mechanical clunk
-  playTone(600, 0.04, 'sawtooth', 0.035);
-  playTone(120, 0.08, 'square', 0.02, -30);
+  playTone(600, 0.04, "sawtooth", 0.035);
+
+  playTone(120, 0.08, "square", 0.02, -30);
 }
 
 function playBootChirp() {
-  playTone(440, 0.12, 'sine', 0.05);
-  setTimeout(() => playTone(660, 0.12, 'sine', 0.05), 100);
-  setTimeout(() => playTone(880, 0.2, 'sine', 0.06), 200);
+  playTone(440, 0.12, "sine", 0.05);
+
+  setTimeout(() => {
+    playTone(660, 0.12, "sine", 0.05);
+  }, 100);
+
+  setTimeout(() => {
+    playTone(880, 0.2, "sine", 0.06);
+  }, 200);
 }
 
 function playErrorSound() {
-  playTone(220, 0.3, 'sawtooth', 0.07);
-  setTimeout(() => playTone(180, 0.3, 'sawtooth', 0.07), 150);
+  playTone(220, 0.3, "sawtooth", 0.07);
+
+  setTimeout(() => {
+    playTone(180, 0.3, "sawtooth", 0.07);
+  }, 150);
 }
 
 function playDataSound() {
   for (let i = 0; i < 6; i++) {
     setTimeout(() => {
-      playTone(2000 + Math.random() * 4000, 0.02, 'sine', 0.015);
+      playTone(2000 + Math.random() * 4000, 0.02, "sine", 0.015);
     }, i * 40);
   }
 }
@@ -74,36 +102,46 @@ function playDataSound() {
 function playEmergencySound() {
   for (let i = 0; i < 8; i++) {
     setTimeout(() => {
-      playTone(i % 2 === 0 ? 800 : 400, 0.18, 'square', 0.06);
+      playTone(i % 2 === 0 ? 800 : 400, 0.18, "square", 0.06);
     }, i * 200);
   }
 }
 
-// start of game logic
-document.addEventListener('click', initAudio, { once: true });
-// const button = document.getElementById("open");
-const result = document.getElementById('display-result');
-const counterDisplay = document.getElementById('jumps');
-const seconds = document.getElementById('seconds');
-const minutes = document.getElementById('minutes');
-const jumpText = document.getElementById('jump-text');
+document.addEventListener("click", initAudio, {
+  once: true,
+});
+
+const result = document.getElementById("display-result");
+
+const counterDisplay = document.getElementById("jumps");
+
+const seconds = document.getElementById("seconds");
+
+const minutes = document.getElementById("minutes");
+
+const jumpText = document.getElementById("jump-text");
+
 const achievements = [];
 
 let count = 0;
-let currentTitle = '';
+
+let currentTitle = "";
+
 let clickCount = 0;
+
 let pathHistory = [];
 
-// it's the counter of click(jump) that the player does
 function updateCounter() {
-  if (counterDisplay) counterDisplay.textContent = clickCount;
-  // display the number of click
+  if (counterDisplay) {
+    counterDisplay.textContent = clickCount;
+  }
+
   if (jumpText) {
     jumpText.textContent =
-      clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
+      clickCount <= 1 ? "NUMBER OF JUMP " : "NUMBER OF JUMPS ";
   }
 }
-//
+
 async function isRedirectPage(title) {
   try {
     const response = await fetch(
@@ -117,20 +155,74 @@ async function isRedirectPage(title) {
     );
   } catch (error) {
     console.error(error);
+
     return false;
   }
 }
 
-// the game's logic
 async function loadWikipediaPage(title, fromLink = false) {
   try {
-    const previousTitle = currentTitle; // save before overwriting
-    currentTitle = title;
+    const previousTitle = currentTitle;
 
-    // check if you win
+    currentTitle = title;
+    const headerTitle = document.getElementById("title");
+
+    pathHistory.push(title);
+
+    const redirectTrap = await isRedirectPage(title);
+
+    if (redirectTrap) {
+      currentTitle = previousTitle;
+
+      return;
+    }
+
+    if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
+      clickCount++;
+
+      updateCounter();
+    }
+    // WIN CONDITION
     if (title.toLowerCase() === "michael jackson") {
       clearInterval(intervalId);
+
+      if (clickCount <= 10) {
+        achievements.push("🏆 Moonwalker");
+      }
+
+      if (count <= 120) {
+        achievements.push("⚡ Smooth Criminal");
+      }
+
+      if (clickCount <= 5) {
+        achievements.push("👑 King of Pop");
+      }
+      if (clickCount === 100) {
+        achievements.push("gue");
+      }
+      if (pathHistory.includes("Billie Jean")) {
+        achievements.push("🕺 He's not his kid");
+      }
+
+      if (pathHistory.includes("Thriller")) {
+        achievements.push("🎬 Not directed by Spielberg");
+      }
+
+      if (pathHistory.includes("United States")) {
+        achievements.push("🦅 Normie");
+      }
+
+      if (pathHistory.includes("Adolf Hitler")) {
+        achievements.push("💀 Might be he");
+      }
+      if (clickCount === 67) {
+        achievements.push("6-7");
+      }
+
+      localStorage.setItem("achievements", JSON.stringify(achievements));
+
       const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
+
       // BEST SCORE
       const savedBest = localStorage.getItem("bestScore");
 
@@ -159,17 +251,6 @@ async function loadWikipediaPage(title, fromLink = false) {
       return;
     }
 
-    const redirectTrap = await isRedirectPage(title);
-    if (redirectTrap) {
-      currentTitle = previousTitle; // restore if we bail
-      return;
-    }
-
-    if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
-      clickCount++;
-      updateCounter();
-    }
-
     const response = await fetch(
       `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(title)}&prop=text&format=json&origin=*`,
     );
@@ -177,26 +258,32 @@ async function loadWikipediaPage(title, fromLink = false) {
     const data = await response.json();
 
     if (!data.parse || !data.parse.text) {
-      throw new Error('Pagina non trovata');
+      throw new Error("Pagina non trovata");
     }
 
-    const html = data.parse.text['*'];
+    const html = data.parse.text["*"];
 
     result.innerHTML = `
   <h1>${title}</h1>
   ${html}
 `;
 
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth',
-    });
+    headerTitle.textContent = `${title.toUpperCase()}`;
 
-    result.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
+    result.querySelectorAll("*").forEach((el) => {
+      el.style.removeProperty("background");
+      el.style.removeProperty("background-color");
+      //el.style.removeProperty("background-image");
+      el.style.removeProperty("color");
+    });
+    window.scrollTo(0, 0);
+
+    result.querySelectorAll("a").forEach((link) => {
+      const href = link.getAttribute("href");
 
       if (!href) {
         disableLink(link);
+
         return;
       }
 
@@ -204,55 +291,67 @@ async function loadWikipediaPage(title, fromLink = false) {
 
       if (!wikiMatch) {
         disableLink(link);
+
         return;
       }
 
       let articleName;
+
       try {
         articleName = decodeURIComponent(wikiMatch[1]);
       } catch (e) {
-        articleName = wikiMatch[1]; // fallback to raw string
+        articleName = wikiMatch[1];
       }
 
-      const finalTitle = articleName.replace(/_/g, ' ');
+      const finalTitle = articleName.replace(/_/g, " ");
 
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
+
         playKeyType();
-        console.log('Click su:', finalTitle);
 
         loadWikipediaPage(finalTitle, true);
       });
     });
+    if (window.innerWidth < 1024) {
+      result.querySelectorAll("table:not(.infobox)").forEach((table) => {
+        if (table.closest(".infobox")) return;
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("table-wrapper");
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    }
     playDataSound();
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = 'Error loading Wikipedia article: ' + title;
+    result.innerHTML = "Error loading Wikipedia article: " + title;
   }
-  pathHistory.push(title);
-}
-// disable the external link
-function disableLink(link) {
-  link.removeAttribute('href');
-  link.style.cursor = 'default';
-  link.style.pointerEvents = 'none';
 }
 
-// pick a random page from wikipedia
+function disableLink(link) {
+  link.removeAttribute("href");
+
+  link.style.cursor = "default";
+
+  link.style.pointerEvents = "none";
+}
+
 async function getWikiAPI() {
   try {
     clickCount = 0;
+
     updateCounter();
 
     const randomResponse = await fetch(
-      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
+      "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
     );
 
     const randomData = await randomResponse.json();
 
     if (!randomData.query || !randomData.query.pages) {
-      throw new Error('Nessuna pagina casuale trovata');
+      throw new Error("Nessuna pagina casuale trovata");
     }
 
     const pages = Object.values(randomData.query.pages);
@@ -260,64 +359,31 @@ async function getWikiAPI() {
     const page = pages[0];
 
     if (!page || !page.title) {
-      throw new Error('Titolo non valido');
+      throw new Error("Titolo non valido");
     }
-    // if the random page is mj
-    if (page.title.toLowerCase() === 'michael jackson') {
-      console.log("Trovato MJ all'inizio, riprovo...");
+
+    if (page.title.toLowerCase() === "michael jackson") {
       getWikiAPI();
+
       return;
     }
 
-    //if don't have load a wikipedia page
     loadWikipediaPage(page.title);
+
     playBootChirp();
   } catch (error) {
     console.error(error);
+
     playErrorSound();
-    result.innerHTML = 'Error fetching random article';
+
+    result.innerHTML = "Error fetching random article";
   }
 }
 
-/*if (button && result) {
-  button.addEventListener("click", () => {
-    console.log("Nuovo articolo casuale...");
-    getWikiAPI();
-  });
-} else {
-  console.error("Elementi HTML non trovati!");
-}*/
-
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   getWikiAPI();
-});
-// create the timer
-const intervalId = setInterval(() => {
-  count++;
 
-  seconds.textContent = String(count % 60).padStart(2, '0');
-  minutes.textContent = String(Math.floor(count / 60) % 60).padStart(2, '0');
-
-  if (count >= 3600) {
-    playEmergencySound();
-    clearInterval(intervalId);
-  }
-}, 1000);
-// for block the crt f or cmd f
-window.addEventListener("keydown", (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
-    e.preventDefault();
-    e.stopPropagation();
-    window.alert('eh volevi');
-    return false;
-  }
-});
-// random number for the ranking of crew
-
-const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
-
-document.addEventListener('DOMContentLoaded', () => {
-  const scores = document.querySelectorAll('.score');
+  const scores = document.querySelectorAll(".score");
 
   scores.forEach((score) => {
     const randomJumps = Math.floor(Math.random() * 10) + 2;
@@ -326,15 +392,66 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 });
 
-if (clickCount <= 10) {
-  achievements.push(' Moonwalker');
-}
+const intervalId = setInterval(() => {
+  count++;
 
-if (count <= 120) {
-  achievements.push(' Smooth Criminal');
-}
+  seconds.textContent = String(count % 60).padStart(2, "0");
 
-if (clickCount <= 5) {
-  achievements.push(' King of Pop');
-}
-localStorage.setItem('achievements', JSON.stringify(achievements));
+  minutes.textContent = String(Math.floor(count / 60) % 60).padStart(2, "0");
+
+  if (count >= 3600) {
+    playEmergencySound();
+
+    clearInterval(intervalId);
+  }
+}, 1000);
+
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 99999;
+    `;
+
+    const modal = document.createElement("div");
+    modal.style.cssText = `
+      background-color: #0a0a0f;
+      color: #c9fbff;
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      padding: 2rem;
+      border: 5px solid #ff00ff;
+      outline: 3.5px solid grey;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px rgba(255, 0, 255, 0.3);
+    `;
+
+    modal.innerHTML = `
+      <p style="color: #ff00ff; margin: 0 0 1rem; font-size: 1.8rem;">
+  ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
+</p>
+      <p style="margin: 0 0 1.5rem;">ctrl+f is disabled on this page.</p>
+      <p style="margin: 0 0 1.5rem;">only link hopping is permitted.</p>
+      <button id="closeModal"
+      <button id="closeModal">[ OK ]</button>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    const close = () => overlay.remove();
+    document.getElementById("closeModal").onclick = close;
+    overlay.onclick = (ev) => {
+      if (ev.target === overlay) close();
+    };
+
+    return false;
+  }
+});
