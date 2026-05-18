@@ -409,9 +409,9 @@ window.addEventListener("keydown", (e) => {
     e.preventDefault();
     e.stopPropagation();
 
-    if (document.querySelector(".ctrl-f-overlay")) return; // guard
-
+    initAudio();
     playEmergencySound();
+    if (document.querySelector(".ctrl-f-overlay")) return; // guard
 
     const overlay = document.createElement("div");
     overlay.classList.add("ctrl-f-overlay");
