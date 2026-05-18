@@ -311,7 +311,7 @@ async function loadWikipediaPage(title, fromLink = false) {
         loadWikipediaPage(finalTitle, true);
       });
     });
-    if (window.innerWidth < 1024) {
+    if (window.innerWidth < 768) {
       result.querySelectorAll("table:not(.infobox)").forEach((table) => {
         if (table.closest(".infobox")) return;
         const wrapper = document.createElement("div");
