@@ -63,7 +63,6 @@ html {
 
 body{
   position:relative;
-  /* max-width: 789px; */
   min-width:375px;
   background-color: var(--black);
   color: var(--neon-blue);
@@ -72,6 +71,7 @@ body{
   font-size:2.5rem;
   letter-spacing: 3px;
   font-family: "VT323", monospace;
+  min-height: 100vh;
 }
 
 .hidden {
@@ -82,6 +82,8 @@ body{
     border: #ff00ff solid 5px;
     margin: 0.5rem;
     padding:2rem;
+    min-height: 100vh;
+
 }
 
 .blue-words {
@@ -106,10 +108,6 @@ h1 {
     0 0 20px var(--neon-blue);
 }
 
-/* header img {
-  height: 50px;
-  width: 100px;
-} */
 
 h2 {
   font-style: normal;
@@ -159,13 +157,10 @@ a {
   max-width: 35rem;
   padding: 2rem;
   align-self: center;
-
-
   background-color: rgba(255, 0, 255, 0.1);
   font-weight: bolder;
   font-size: 2.5rem;
   border: var(--fuxia) solid 3px;
-
 
   text-shadow:
     0 0 5px var(--fuxia),
@@ -187,8 +182,14 @@ a {
     margin-top: 1rem;
 }
 
-.{
-  padding-left: 2rem;
+.achievements{
+  margin-top: 2rem;
+}
+
+.path-history{
+  margin-top: 2rem;
+  color: grey;
+
 }
 
 .path-history p{
@@ -196,36 +197,16 @@ a {
     margin-top: 0.7rem;
 }
 
-/* main {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-  min-width: 375px;
-} */
-
-/* h1{
-  color: var(--neon-blue);
-  font-size: 6rem;
-} */
-
-/* h2{
-  color: var(--fucsia);
-  font-size:3rem;
-} */
-
-
 p{
   font-size:1.6rem;
 }
 
 
-
 .logo-mobile {
   width: 100px;
-  align-self: center;
-  margin-top: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .logo-desktop {
@@ -243,7 +224,7 @@ p{
     display:block;
   }
 
-    ul {
+  ul {
     display: flex;
     flex-direction: row;
     gap: 3rem;
@@ -265,11 +246,9 @@ p{
 
   .traslate {
     display: flex;
-    /* align-items: center; */
     overflow: hidden;
     width: max-content;
     flex-shrink: 0;
-    /* width: 100%; */
     animation: marquee 15s linear infinite;
   }
 
@@ -284,12 +263,10 @@ p{
   .hero-container {
     flex-direction: row;
     gap: 6rem;
-
-    
-    margin-top: 4rem
+    margin-top: 10rem;
   }
 
-  .ranking-and-diagnostics{
+  .all-score{
     width: 40%;
   }
 
@@ -341,4 +318,10 @@ p{
           color: var(--black);
           cursor: pointer;
   }
+}
+
+.img-logo{
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
 }
