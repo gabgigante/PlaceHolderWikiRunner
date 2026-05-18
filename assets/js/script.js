@@ -408,7 +408,7 @@ window.addEventListener("keydown", (e) => {
   if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
     e.preventDefault();
     e.stopPropagation();
-
+    playEmergencySound();
     const overlay = document.createElement("div");
     overlay.style.cssText = `
       position: fixed; inset: 0;
