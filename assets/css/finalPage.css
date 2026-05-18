@@ -61,15 +61,15 @@ html {
   }
 }
 
-body{
-  position:relative;
+body {
+  position: relative;
   /* max-width: 789px; */
-  min-width:375px;
+  min-width: 375px;
   background-color: var(--black);
   color: var(--neon-blue);
   border: grey solid 3px;
   margin: 1rem;
-  font-size:2.5rem;
+  font-size: 2.5rem;
   letter-spacing: 3px;
   font-family: "VT323", monospace;
 }
@@ -78,10 +78,10 @@ body{
   display: none;
 }
 
-.border{
-    border: #ff00ff solid 5px;
-    margin: 0.5rem;
-    padding:2rem;
+.border {
+  border: #ff00ff solid 5px;
+  margin: 0.5rem;
+  padding: 2rem;
 }
 
 .blue-words {
@@ -119,20 +119,20 @@ h2 {
   /* font-size: 2.2rem; */
 }
 
-.results{
+.results {
   border-bottom-style: groove;
   border-top-style: groove;
   padding-top: 2rem;
   padding-bottom: 2rem;
 }
 
-h3{
+h3 {
   font-style: normal;
   font-weight: 400;
   font-size: 8rem;
 }
 
-h4{
+h4 {
   font-style: normal;
   font-weight: bold;
   color: var(--fuxia);
@@ -160,12 +160,10 @@ a {
   padding: 2rem;
   align-self: center;
 
-
   background-color: rgba(255, 0, 255, 0.1);
   font-weight: bolder;
   font-size: 2.5rem;
   border: var(--fuxia) solid 3px;
-
 
   text-shadow:
     0 0 5px var(--fuxia),
@@ -173,27 +171,27 @@ a {
     0 0 20px var(--fuxia);
 }
 
-.your-score{
-  padding-left:2rem;
-}
-
-.your-score p{
-    font-size: 2.5rem;
-    margin-top: 1rem;
-}
-
-.achievements p{
-    font-size: 2.5rem;
-    margin-top: 1rem;
-}
-
-.{
+.your-score {
   padding-left: 2rem;
 }
 
-.path-history p{
-    font-size: 1.5rem;
-    margin-top: 0.7rem;
+.your-score p {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+}
+
+.achievements p {
+  font-size: 2.5rem;
+  margin-top: 1rem;
+}
+
+.achievements {
+  padding-left: 2rem;
+}
+
+.path-history p {
+  font-size: 1.5rem;
+  margin-top: 0.7rem;
 }
 
 /* main {
@@ -215,12 +213,9 @@ a {
   font-size:3rem;
 } */
 
-
-p{
-  font-size:1.6rem;
+p {
+  font-size: 1.6rem;
 }
-
-
 
 .logo-mobile {
   width: 100px;
@@ -232,18 +227,17 @@ p{
   display: none;
 }
 
-@media(min-width: 1024px){
-
+@media (min-width: 1024px) {
   .border {
     padding: 5rem;
     overflow: hidden;
     padding-bottom: 1rem;
   }
-  .hidden{
-    display:block;
+  .hidden {
+    display: block;
   }
 
-    ul {
+  ul {
     display: flex;
     flex-direction: row;
     gap: 3rem;
@@ -285,16 +279,15 @@ p{
     flex-direction: row;
     gap: 6rem;
 
-    
-    margin-top: 4rem
+    margin-top: 4rem;
   }
 
-  .ranking-and-diagnostics{
+  .ranking-and-diagnostics {
     width: 40%;
   }
 
-  .path-history{
-    margin-bottom:6rem;
+  .path-history {
+    margin-bottom: 6rem;
   }
 
   .hero-main {
@@ -308,37 +301,37 @@ p{
     color: var(--black);
     cursor: pointer;
   }
-  h1{
+  h1 {
     font-size: 8rem;
   }
 
-  h2{
-    font-size:3rem;
+  h2 {
+    font-size: 3rem;
   }
 
-  h3{
-    font-size:15rem;
+  h3 {
+    font-size: 15rem;
   }
 
-  .your-score{
-    margin-top:3rem;
-  }
-
-  .achievements{
+  .your-score {
     margin-top: 3rem;
   }
 
-  a{
+  .achievements {
     margin-top: 3rem;
-    margin-bottom:8rem;
+  }
+
+  a {
+    margin-top: 3rem;
+    margin-bottom: 8rem;
     width: 45rem;
     padding: 3rem;
     text-align: center;
   }
 
-  .a:hover{
-          background-color: var(--neon-blue);
-          color: var(--black);
-          cursor: pointer;
+  .a:hover {
+    background-color: var(--neon-blue);
+    color: var(--black);
+    cursor: pointer;
   }
 }

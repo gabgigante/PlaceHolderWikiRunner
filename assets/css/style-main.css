@@ -1,3 +1,4 @@
+/* playing page's css stylesheet*/
 /* Default Styles */
 :root {
   /* Colors */
@@ -21,7 +22,7 @@ body {
   background-color: var(--black);
   color: var(--neon-blue-soft);
   position: relative;
-  font-family: 'VT323', monospace;
+  font-family: "VT323", monospace;
   margin: 1rem;
   min-width: 375px;
 }
@@ -45,7 +46,7 @@ body {
 }
 
 .overlay::after {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
