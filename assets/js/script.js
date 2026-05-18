@@ -188,48 +188,58 @@ async function loadWikipediaPage(title, fromLink = false) {
 
       if (clickCount <= 10) {
         achievements.push(
-          '🏆 Moonwalker → you jump in michael jackson less then 11 jump',
+          '🏆 Moonwalker → you have jumped to michael jackson in 10 or less jumps',
         );
       }
 
       if (count <= 120) {
         achievements.push(
-          '⚡ Smooth Criminal → you jump in to michael jackson less then 120 seconds',
+          '⚡ Smooth Criminal → you reached michael jackson in less then 120 seconds',
         );
       }
 
       if (clickCount <= 5) {
-        achievements.push('👑 King of Pop → you jump only 5 or less');
+        achievements.push(
+          '👑 King of Pop → you have jumped only 5 times or less',
+        );
       }
       if (clickCount === 100) {
-        achievements.push("gue → that's secret");
+        achievements.push("gue → that's a secret : ^ ) ");
       }
       if (pathHistory.includes('Billie Jean')) {
-        achievements.push("🕺 He's not his kid → you jumped in Billie Jean");
+        achievements.push(
+          "🕺 He's not his kid → you jumped through Billie Jean during your navigation",
+        );
       }
 
       if (pathHistory.includes('Thriller')) {
         achievements.push(
-          '🎬 Not directed by Spielberg → you jumped in Trhiller',
+          '🎬 Not directed by Spielberg → you jumped through Thriller during your navigation',
         );
       }
 
       if (pathHistory.includes('United States')) {
-        achievements.push('🦅 Normie → you jumped in United States');
+        achievements.push(
+          '🦅 Normie → you jumped through United States during your navigation',
+        );
       }
 
       if (pathHistory.includes('Adolf Hitler')) {
-        achievements.push('💀 Might be he → you jumped in Adolf Hitler');
+        achievements.push(
+          '💀 Might be he → jumped through Adolf Hitler during your navigation',
+        );
       }
       if (clickCount === 67) {
         achievements.push('6-7');
       }
       if (pathHistory.includes('Sonic the Hedgehog 3 ')) {
-        achievements.push('he dont create the soundtrack → you jump sonic 3');
+        achievements.push(
+          'he didnt create the soundtrack → you passed by Sonic 3',
+        );
       }
       if (pathHistory.includes("Michael Jackson's Moonwalker")) {
         achievements.push(
-          "the greatest classic of'90 → you jumped Michael Jackson's Moonwalker",
+          "the greatest classic of'90 → you passed by Michael Jackson's Moonwalker",
         );
       }
       localStorage.setItem('achievements', JSON.stringify(achievements));
