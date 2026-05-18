@@ -81,7 +81,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 8rem;
-  gap: 8rem;
+  gap: 5rem;
 }
 
 .overlay::after {
