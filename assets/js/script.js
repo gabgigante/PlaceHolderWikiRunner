@@ -1,4 +1,4 @@
-// web
+// Javascript file that handles game logic and everything related to the playing page
 let audioCtx = null;
 
 function initAudio() {
@@ -6,12 +6,12 @@ function initAudio() {
 
   audioCtx = new (window.AudioContext || window.webkitAudioContext)();
 
-  if (audioCtx.state === 'suspended') {
+  if (audioCtx.state === "suspended") {
     audioCtx.resume();
   }
 }
 
-function playTone(freq, duration, type = 'square', volume = 0.06, detune = 0) {
+function playTone(freq, duration, type = "square", volume = 0.06, detune = 0) {
   if (!audioCtx) return;
 
   const osc = audioCtx.createOscillator();
@@ -36,7 +36,7 @@ function playTone(freq, duration, type = 'square', volume = 0.06, detune = 0) {
 }
 
 function playKeyType() {
-  playTone(900 + Math.random() * 200, 0.015, 'square', 0.018);
+  playTone(900 + Math.random() * 200, 0.015, "square", 0.018);
 
   if (!audioCtx) return;
 
@@ -66,35 +66,35 @@ function playKeyType() {
 }
 
 function playReturnSound() {
-  playTone(600, 0.04, 'sawtooth', 0.035);
+  playTone(600, 0.04, "sawtooth", 0.035);
 
-  playTone(120, 0.08, 'square', 0.02, -30);
+  playTone(120, 0.08, "square", 0.02, -30);
 }
 
 function playBootChirp() {
-  playTone(440, 0.12, 'sine', 0.05);
+  playTone(440, 0.12, "sine", 0.05);
 
   setTimeout(() => {
-    playTone(660, 0.12, 'sine', 0.05);
+    playTone(660, 0.12, "sine", 0.05);
   }, 100);
 
   setTimeout(() => {
-    playTone(880, 0.2, 'sine', 0.06);
+    playTone(880, 0.2, "sine", 0.06);
   }, 200);
 }
 
 function playErrorSound() {
-  playTone(220, 0.3, 'sawtooth', 0.07);
+  playTone(220, 0.3, "sawtooth", 0.07);
 
   setTimeout(() => {
-    playTone(180, 0.3, 'sawtooth', 0.07);
+    playTone(180, 0.3, "sawtooth", 0.07);
   }, 150);
 }
 
 function playDataSound() {
   for (let i = 0; i < 6; i++) {
     setTimeout(() => {
-      playTone(2000 + Math.random() * 4000, 0.02, 'sine', 0.015);
+      playTone(2000 + Math.random() * 4000, 0.02, "sine", 0.015);
     }, i * 40);
   }
 }
@@ -102,30 +102,30 @@ function playDataSound() {
 function playEmergencySound() {
   for (let i = 0; i < 8; i++) {
     setTimeout(() => {
-      playTone(i % 2 === 0 ? 800 : 400, 0.18, 'square', 0.06);
+      playTone(i % 2 === 0 ? 800 : 400, 0.18, "square", 0.06);
     }, i * 200);
   }
 }
 
-document.addEventListener('click', initAudio, {
+document.addEventListener("click", initAudio, {
   once: true,
 });
 
-const result = document.getElementById('display-result');
+const result = document.getElementById("display-result");
 
-const counterDisplay = document.getElementById('jumps');
+const counterDisplay = document.getElementById("jumps");
 
-const seconds = document.getElementById('seconds');
+const seconds = document.getElementById("seconds");
 
-const minutes = document.getElementById('minutes');
+const minutes = document.getElementById("minutes");
 
-const jumpText = document.getElementById('jump-text');
+const jumpText = document.getElementById("jump-text");
 
 const achievements = [];
 
 let count = 0;
 
-let currentTitle = '';
+let currentTitle = "";
 
 let clickCount = 0;
 
@@ -138,7 +138,7 @@ function updateCounter() {
 
   if (jumpText) {
     jumpText.textContent =
-      clickCount <= 1 ? 'NUMBER OF JUMP ' : 'NUMBER OF JUMPS ';
+      clickCount <= 1 ? "NUMBER OF JUMP " : "NUMBER OF JUMPS ";
   }
 }
 
@@ -165,68 +165,68 @@ async function loadWikipediaPage(title, fromLink = false) {
     const previousTitle = currentTitle;
 
     currentTitle = title;
-    const headerTitle = document.getElementById('title');
+    const headerTitle = document.getElementById("title");
 
     pathHistory.push(title);
 
     // WIN CONDITION
-    if (title.toLowerCase() === 'michael jackson') {
+    if (title.toLowerCase() === "michael jackson") {
       clearInterval(intervalId);
 
       if (clickCount <= 10) {
-        achievements.push('🏆 Moonwalker');
+        achievements.push("🏆 Moonwalker");
       }
 
       if (count <= 120) {
-        achievements.push('⚡ Smooth Criminal');
+        achievements.push("⚡ Smooth Criminal");
       }
 
       if (clickCount <= 5) {
-        achievements.push('👑 King of Pop');
+        achievements.push("👑 King of Pop");
       }
       if (clickCount === 100) {
-        achievements.push('gue');
+        achievements.push("gue");
       }
-      if (pathHistory.includes('Billie Jean')) {
+      if (pathHistory.includes("Billie Jean")) {
         achievements.push("🕺 He's not his kid");
       }
 
-      if (pathHistory.includes('Thriller')) {
-        achievements.push('🎬 Not directed by Spielberg');
+      if (pathHistory.includes("Thriller")) {
+        achievements.push("🎬 Not directed by Spielberg");
       }
 
-      if (pathHistory.includes('United States')) {
-        achievements.push('🦅 Normie');
+      if (pathHistory.includes("United States")) {
+        achievements.push("🦅 Normie");
       }
 
-      if (pathHistory.includes('Adolf Hitler')) {
-        achievements.push('💀 Might be he');
+      if (pathHistory.includes("Adolf Hitler")) {
+        achievements.push("💀 Might be he");
       }
       if (clickCount === 67) {
-        achievements.push('6-7');
+        achievements.push("6-7");
       }
 
-      localStorage.setItem('achievements', JSON.stringify(achievements));
+      localStorage.setItem("achievements", JSON.stringify(achievements));
 
       const encodedPath = encodeURIComponent(JSON.stringify(pathHistory));
 
       // BEST SCORE
-      const savedBest = localStorage.getItem('bestScore');
+      const savedBest = localStorage.getItem("bestScore");
 
       const bestScore = savedBest !== null ? Number(savedBest) : Infinity;
 
       if (clickCount < bestScore) {
-        localStorage.setItem('bestScore', String(clickCount));
+        localStorage.setItem("bestScore", String(clickCount));
       }
 
       // BEST TIME
-      const savedBestTime = localStorage.getItem('bestTime');
+      const savedBestTime = localStorage.getItem("bestTime");
 
       const bestTime =
         savedBestTime !== null ? Number(savedBestTime) : Infinity;
 
       if (count < bestTime) {
-        localStorage.setItem('bestTime', String(count));
+        localStorage.setItem("bestTime", String(count));
       }
 
       playReturnSound();
@@ -259,10 +259,10 @@ async function loadWikipediaPage(title, fromLink = false) {
     const data = await response.json();
 
     if (!data.parse || !data.parse.text) {
-      throw new Error('Pagina non trovata');
+      throw new Error("Pagina non trovata");
     }
 
-    const html = data.parse.text['*'];
+    const html = data.parse.text["*"];
 
     result.innerHTML = `
   <h1>${title}</h1>
@@ -271,16 +271,16 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     headerTitle.textContent = `${title.toUpperCase()}`;
 
-    result.querySelectorAll('*').forEach((el) => {
-      el.style.removeProperty('background');
-      el.style.removeProperty('background-color');
+    result.querySelectorAll("*").forEach((el) => {
+      el.style.removeProperty("background");
+      el.style.removeProperty("background-color");
       //el.style.removeProperty("background-image");
-      el.style.removeProperty('color');
+      el.style.removeProperty("color");
     });
     window.scrollTo(0, 0);
 
-    result.querySelectorAll('a').forEach((link) => {
-      const href = link.getAttribute('href');
+    result.querySelectorAll("a").forEach((link) => {
+      const href = link.getAttribute("href");
 
       if (!href) {
         disableLink(link);
@@ -304,9 +304,9 @@ async function loadWikipediaPage(title, fromLink = false) {
         articleName = wikiMatch[1];
       }
 
-      const finalTitle = articleName.replace(/_/g, ' ');
+      const finalTitle = articleName.replace(/_/g, " ");
 
-      link.addEventListener('click', (e) => {
+      link.addEventListener("click", (e) => {
         e.preventDefault();
 
         playKeyType();
@@ -314,21 +314,27 @@ async function loadWikipediaPage(title, fromLink = false) {
         loadWikipediaPage(finalTitle, true);
       });
     });
-
+    result.querySelectorAll("table:not(.infobox)").forEach((table) => {
+      if (table.closest(".infobox")) return;
+      const wrapper = document.createElement("div");
+      wrapper.classList.add("table-wrapper");
+      table.parentNode.insertBefore(wrapper, table);
+      wrapper.appendChild(table);
+    });
     playDataSound();
   } catch (error) {
     console.error(error);
 
-    result.innerHTML = 'Error loading Wikipedia article: ' + title;
+    result.innerHTML = "Error loading Wikipedia article: " + title;
   }
 }
 
 function disableLink(link) {
-  link.removeAttribute('href');
+  link.removeAttribute("href");
 
-  link.style.cursor = 'default';
+  link.style.cursor = "default";
 
-  link.style.pointerEvents = 'none';
+  link.style.pointerEvents = "none";
 }
 
 async function getWikiAPI() {
@@ -338,13 +344,13 @@ async function getWikiAPI() {
     updateCounter();
 
     const randomResponse = await fetch(
-      'https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1',
+      "https://en.wikipedia.org/w/api.php?action=query&format=json&origin=*&generator=random&grnnamespace=0&grnlimit=1",
     );
 
     const randomData = await randomResponse.json();
 
     if (!randomData.query || !randomData.query.pages) {
-      throw new Error('Nessuna pagina casuale trovata');
+      throw new Error("Nessuna pagina casuale trovata");
     }
 
     const pages = Object.values(randomData.query.pages);
@@ -352,10 +358,10 @@ async function getWikiAPI() {
     const page = pages[0];
 
     if (!page || !page.title) {
-      throw new Error('Titolo non valido');
+      throw new Error("Titolo non valido");
     }
 
-    if (page.title.toLowerCase() === 'michael jackson') {
+    if (page.title.toLowerCase() === "michael jackson") {
       getWikiAPI();
 
       return;
@@ -369,14 +375,14 @@ async function getWikiAPI() {
 
     playErrorSound();
 
-    result.innerHTML = 'Error fetching random article';
+    result.innerHTML = "Error fetching random article";
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
   getWikiAPI();
 
-  const scores = document.querySelectorAll('.score');
+  const scores = document.querySelectorAll(".score");
 
   scores.forEach((score) => {
     const randomJumps = Math.floor(Math.random() * 10) + 2;
@@ -388,9 +394,9 @@ document.addEventListener('DOMContentLoaded', () => {
 const intervalId = setInterval(() => {
   count++;
 
-  seconds.textContent = String(count % 60).padStart(2, '0');
+  seconds.textContent = String(count % 60).padStart(2, "0");
 
-  minutes.textContent = String(Math.floor(count / 60) % 60).padStart(2, '0');
+  minutes.textContent = String(Math.floor(count / 60) % 60).padStart(2, "0");
 
   if (count >= 3600) {
     playEmergencySound();
@@ -399,13 +405,51 @@ const intervalId = setInterval(() => {
   }
 }, 1000);
 
-window.addEventListener('keydown', (e) => {
-  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'f') {
+window.addEventListener("keydown", (e) => {
+  if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === "f") {
     e.preventDefault();
-
     e.stopPropagation();
 
-    window.alert('eh volevi');
+    const overlay = document.createElement("div");
+    overlay.style.cssText = `
+      position: fixed; inset: 0;
+      background: rgba(0, 0, 0, 0.75);
+      display: flex; align-items: center; justify-content: center;
+      z-index: 99999;
+    `;
+
+    const modal = document.createElement("div");
+    modal.style.cssText = `
+      background-color: #0a0a0f;
+      color: #c9fbff;
+      font-family: 'VT323', monospace;
+      font-size: 1.4rem;
+      padding: 2rem;
+      border: 5px solid #ff00ff;
+      outline: 3.5px solid grey;
+      text-align: center;
+      text-transform: uppercase;
+      box-shadow: 0 0 20px #ff00ff, 0 0 40px rgba(255, 0, 255, 0.3);
+    `;
+
+    modal.innerHTML = `
+      <p style="color: #ff00ff; margin: 0 0 1rem; font-size: 1.8rem;">
+  ⚠ <span style="color: #00f3ff;">ERROR</span> ⚠
+</p>
+      <p style="margin: 0 0 1.5rem;">ctrl+f is disabled on this page.</p>
+      <p style="margin: 0 0 1.5rem;">only link hopping is permitted.</p>
+      <button id="closeModal"
+      <button id="closeModal">[ OK ]</button>
+    `;
+
+    overlay.appendChild(modal);
+    document.body.appendChild(overlay);
+
+    const close = () => overlay.remove();
+    document.getElementById("closeModal").onclick = close;
+    overlay.onclick = (ev) => {
+      if (ev.target === overlay) close();
+    };
 
     return false;
   }
