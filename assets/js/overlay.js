@@ -79,9 +79,12 @@ const paragraph = document.getElementById("press-enter");
 function handleStart() {
   initAudio();
   startBootLines();
-  paragraph.textContent = "Press enter to skip";
+  if (window.innerWidth < 1025) {
+    paragraph.textContent = "Tap to skip";
+  } else {
+    paragraph.textContent = "Press enter to skip";
+  }
 }
-
 document.addEventListener("keydown", (e) => {
   if (e.key === "Enter") handleStart();
 });
@@ -98,16 +101,19 @@ function startBootLines() {
   let totalDelay = 0;
   let bootContainer = document.createElement("section");
   bootContainer.classList.add("boot-container");
+  function skipper() {
+    const isGithubPages = window.location.hostname.includes("github.io");
 
+    window.location.href = isGithubPages
+      ? "/PlaceHolderWikiRunner/wikirun.html"
+      : "../../wikirun.html";
+  }
   document.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
-      const isGithubPages = window.location.hostname.includes("github.io");
-
-      window.location.href = isGithubPages
-        ? "/PlaceHolderWikiRunner/wikirun.html"
-        : "../../wikirun.html";
+      skipper();
     }
   });
+  document.addEventListener("touchstart", skipper, { once: true });
 
   for (let i = 0; i < bootLines.length; i++) {
     const line = bootLines[i];
@@ -134,4 +140,7 @@ function startBootLines() {
       ? "/PlaceHolderWikiRunner/wikirun.html"
       : "../../wikirun.html";
   }, totalDelay + 1100);
+}
+if (window.innerWidth < 1025) {
+  paragraph.textContent = "Tap to boot into the system";
 }

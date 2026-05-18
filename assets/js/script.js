@@ -169,6 +169,19 @@ async function loadWikipediaPage(title, fromLink = false) {
 
     pathHistory.push(title);
 
+    const redirectTrap = await isRedirectPage(title);
+
+    if (redirectTrap) {
+      currentTitle = previousTitle;
+
+      return;
+    }
+
+    if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
+      clickCount++;
+
+      updateCounter();
+    }
     // WIN CONDITION
     if (title.toLowerCase() === "michael jackson") {
       clearInterval(intervalId);
@@ -238,20 +251,6 @@ async function loadWikipediaPage(title, fromLink = false) {
       return;
     }
 
-    const redirectTrap = await isRedirectPage(title);
-
-    if (redirectTrap) {
-      currentTitle = previousTitle;
-
-      return;
-    }
-
-    if (fromLink && title.toLowerCase() !== previousTitle.toLowerCase()) {
-      clickCount++;
-
-      updateCounter();
-    }
-
     const response = await fetch(
       `https://en.wikipedia.org/w/api.php?action=parse&page=${encodeURIComponent(title)}&prop=text&format=json&origin=*`,
     );
@@ -314,13 +313,15 @@ async function loadWikipediaPage(title, fromLink = false) {
         loadWikipediaPage(finalTitle, true);
       });
     });
-    result.querySelectorAll("table:not(.infobox)").forEach((table) => {
-      if (table.closest(".infobox")) return;
-      const wrapper = document.createElement("div");
-      wrapper.classList.add("table-wrapper");
-      table.parentNode.insertBefore(wrapper, table);
-      wrapper.appendChild(table);
-    });
+    if (window.innerWidth < 1024) {
+      result.querySelectorAll("table:not(.infobox)").forEach((table) => {
+        if (table.closest(".infobox")) return;
+        const wrapper = document.createElement("div");
+        wrapper.classList.add("table-wrapper");
+        table.parentNode.insertBefore(wrapper, table);
+        wrapper.appendChild(table);
+      });
+    }
     playDataSound();
   } catch (error) {
     console.error(error);
