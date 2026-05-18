@@ -27,6 +27,7 @@ body {
   font-size: 2.5rem;
   letter-spacing: 3px;
   font-family: "VT323", monospace;
+  min-height: 100vh;
 }
 
 .noise {
@@ -43,7 +44,7 @@ body {
 
 .border {
   border: #ff00ff solid 5px;
-  height: 100vh;
+  min-height: 100vh;
   margin: 0.5rem;
   padding: 2rem;
 }
